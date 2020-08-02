@@ -5,7 +5,7 @@ import classes from './Contact.module.css'
 export default function Contact(props) {
     return (
         <div className={classes.Contact}>
-            <div className={classes.wrapper}>
+            <div className='wrapper'>
                 <div className={classes.formGroup}>
                     <label>Name</label>
                     <input type="text" name="name" id="name"/>

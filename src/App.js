@@ -9,6 +9,7 @@ import Article from './components/Articles/Article/Article'
 import Projects from './components/Projects/Projects'
 import Project from './components/Projects/Project/Project'
 import Contact from './components/Contact/Contact';
+import About from './components/About/About';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path='/project/:id' component={Project} />
           <Route path='/projects' component={Projects}/>
           <Route path='/contact' component={Contact} />
-          <Route path='/' exact />
+          <Route path='/' exact component={About}/>
         </Switch>
       </main>
       <Footer />

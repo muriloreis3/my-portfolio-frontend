@@ -10,7 +10,7 @@ export default function Header(props) {
             <Logo />
             <nav>
                 <ul>
-                    <li><NavLink to="/" activeClassName={classes.active}>Home</NavLink></li>
+                    <li><NavLink to="/" exact activeClassName={classes.active}>Home</NavLink></li>
                     <li><NavLink to="/articles" activeClassName={classes.active}>Articles</NavLink></li>
                     <li><NavLink to="/projects" activeClassName={classes.active}>Projects</NavLink></li>
                     <li><NavLink to="/contact" activeClassName={classes.active}>Contact</NavLink></li>
