@@ -8,7 +8,7 @@ import Articles from './components/Articles/Articles'
 import Article from './components/Articles/Article/Article'
 import Projects from './components/Projects/Projects'
 import Project from './components/Projects/Project/Project'
-
+import Contact from './components/Contact/Contact';
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
           <Route path='/articles' component={Articles}/>
           <Route path='/project/:id' component={Project} />
           <Route path='/projects' component={Projects}/>
+          <Route path='/contact' component={Contact} />
           <Route path='/' exact />
         </Switch>
       </main>

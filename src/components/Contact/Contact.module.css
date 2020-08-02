@@ -1,0 +1,14 @@
+.Contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: min-content;
+}
+
+.formGroup {
+    margin: 10px 0;
+}
