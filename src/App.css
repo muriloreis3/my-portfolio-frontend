@@ -1,3 +1,24 @@
 main {
     margin-top: 70px;
 }
+
+.ProjectTitle {
+    display: flex;
+}
+
+.ProjectTitle a {
+    text-decoration: none;
+    align-self: center;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.card {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+}
+
+.card:hover {
+    cursor: pointer;
+}

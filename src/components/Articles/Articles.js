@@ -14,7 +14,6 @@ export default function Articles(props) {
                 }
             })
             .then(resp => {
-                console.log(resp.data);
                 setArticles(resp.data);
             })
             .catch(error => {
@@ -29,7 +28,11 @@ export default function Articles(props) {
     return (
         <div>
             {articles.map(article => {
-                return <ArticleCard title={article.title} content={article.content} clicked={() => openArticle(article._id)}/>
+                return <ArticleCard 
+                    key={article._id}
+                    title={article.title} 
+                    content={article.content} 
+                    clicked={() => openArticle(article._id)}/>
             })}
         </div>
     )
