@@ -1,5 +1,4 @@
 import React from 'react'
-import classes from './ProjectCard.module.css'
 
 export default function ProjectCard(props) {
     return (

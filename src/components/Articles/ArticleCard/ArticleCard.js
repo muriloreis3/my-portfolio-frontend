@@ -1,7 +1,5 @@
 import React from 'react'
 
-import classes from './ArticleCard.module.css'
-
 export default function ArticleCard(props) {
     return (
         <div className="card" onClick={props.clicked}>
