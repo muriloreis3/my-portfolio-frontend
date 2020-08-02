@@ -1,5 +1,10 @@
 .Header {
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 70px;
 }
 
 .Header ul {
@@ -22,8 +27,8 @@
     margin: 0 5px;
 }
 
-.Header li a:hover,
-.Header li a:active
-.Header li a.active {
+.Header a:hover,
+.Header a:active
+.Header a.active {
     opacity: 0.8;
 }
