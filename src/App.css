@@ -15,6 +15,12 @@ main {
 
 .wrapper {
     width: min-content;
+    height: min-content;
+    align-self: center;
+}
+
+.formGroup {
+    margin: 10px 0;
 }
 
 .card {

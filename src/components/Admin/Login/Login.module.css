@@ -1,0 +1,19 @@
+.Login {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+}
+
+.LoginBox {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.LoginBox div {
+    margin-bottom: 10px;
+}
+
+.LoginBox div:last-child {
+    margin-bottom: 0;
+}
