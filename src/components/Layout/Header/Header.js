@@ -7,7 +7,9 @@ import classes from './Header.module.css'
 export default function Header(props) {
     return (
         <header className={classes.Header}>
-            <Logo />
+            <div>
+                <NavLink to="/" exact ><Logo /></NavLink>
+            </div>
             <nav>
                 <ul>
                     <li><NavLink to="/" exact activeClassName={classes.active}>Home</NavLink></li>

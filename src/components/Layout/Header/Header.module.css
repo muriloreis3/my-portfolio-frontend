@@ -21,14 +21,14 @@
     border: none
 }
 
-.Header li a {
+.Header a {
     text-decoration: none;
     cursor: pointer;
     margin: 0 5px;
 }
 
-.Header li a:hover,
-.Header li a:active,
-.Header li a.active {
+.Header a:hover,
+.Header a:active,
+.Header a.active {
     opacity: 0.5;
 }

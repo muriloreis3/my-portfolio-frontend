@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Logo from '../../Layout/Logo/Logo'
 import classes from './Login.module.css'
 
 export default function Login() {
@@ -7,6 +8,9 @@ export default function Login() {
     return (
         <div className={classes.Login}>
             <div className={classesBox.join(' ')}>
+                <div>
+                    <Logo />
+                </div>
                 <div>
                     <label htmlFor="">Username</label>
                     <input type="text" name="username"/>
