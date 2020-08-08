@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Header from './Header/Header';
@@ -12,7 +12,7 @@ import About from '../About/About';
 
 export default function Layout(props) {
     return (
-        <div>
+        <Fragment>
             <Header />
             <main>
                 <Switch>
@@ -25,6 +25,6 @@ export default function Layout(props) {
                 </Switch>
             </main>
             <Footer />
-        </div>
+        </Fragment>
     )
 }
