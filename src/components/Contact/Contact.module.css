@@ -4,3 +4,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.Contact textarea {
+    width: 100%;
+    display: block;
+    min-height: 200px;
+}

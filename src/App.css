@@ -23,12 +23,43 @@ main {
     margin: 10px 0;
 }
 
+.cardWrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .card {
-    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px var(--dark-color);
     padding: 10px;
     margin: 5px;
+    background: var(--secondary-color);
+    color: var(--dark-color);
+    min-width: 80%;
 }
 
 .card:hover {
     cursor: pointer;
+}
+
+.card i {
+    color: var(--dark-color);
+}
+
+.bg-primary {
+    background: var(--dark-color);
+    color: var(--light-color);
+}
+
+.bg-heading {
+    background: var(--heading-color);
+    color: var(--light-color);
+}
+
+.bg-heading a,
+.bg-primary a {
+    color: var(--light-color);
 }

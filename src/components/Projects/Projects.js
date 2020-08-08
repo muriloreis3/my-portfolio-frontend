@@ -24,7 +24,7 @@ export default function Projects(props) {
     }
 
     return (
-        <div>
+        <div className="cardWrapper">
             {
                 projects.map(project => {
                     return <ProjectCard

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Axios from 'axios';
 
+import ProjectIcons from '../ProjectIcons/ProjectIcons'
+
 export default function Project(props) {
     const [project, setProject] = useState({})
     useEffect(() => {
@@ -21,8 +23,9 @@ export default function Project(props) {
         <div>
             <div className="ProjectTitle">
                 <h2>{project.title}</h2>
-                <a href={project.repositoryLink}>G</a>
-                <a href={project.demonstrationLink}>P</a>
+                <ProjectIcons 
+                    repositoryLink={props.repositoryLink} 
+                    demonstrationLink={props.demonstrationLink}/>
             </div>
             <div>
                 {project.description}

@@ -4,7 +4,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    margin-bottom: 70px;
 }
 
 .Header ul {
@@ -30,5 +29,15 @@
 .Header a:hover,
 .Header a:active,
 .Header a.active {
-    opacity: 0.5;
+    opacity: 0.8;
+}
+
+.Header nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Header .Logo a:hover {
+    opacity: 1;
 }

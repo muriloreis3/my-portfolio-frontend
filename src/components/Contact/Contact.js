@@ -15,7 +15,8 @@ export default function Contact(props) {
                     <input type="email" name="email" id="email"/>
                 </div>
                 <div className="formGroup">
-                    <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                    <label>Message</label>
+                    <textarea name="content" id="content"></textarea>
                 </div>
             </div>
         </div>

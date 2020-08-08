@@ -25,7 +25,7 @@ export default function Articles(props) {
     }
 
     return (
-        <div>
+        <div className="cardWrapper">
             {articles.map(article => {
                 return <ArticleCard 
                     key={article._id}

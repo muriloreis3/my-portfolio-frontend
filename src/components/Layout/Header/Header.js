@@ -5,9 +5,10 @@ import Logo from '../Logo/Logo'
 import classes from './Header.module.css'
 
 export default function Header(props) {
+    const elClasses = [classes.Header, 'bg-heading'];
     return (
-        <header className={classes.Header}>
-            <div>
+        <header className={elClasses.join(' ')}>
+            <div className={classes.Logo}>
                 <NavLink to="/" exact ><Logo /></NavLink>
             </div>
             <nav>
