@@ -49,6 +49,15 @@ main {
     color: var(--dark-color);
 }
 
+.card.about {
+    display: flex;
+    padding: 20px;
+}
+
+.card.about p {
+    margin: 10px;
+}
+
 .bg-primary {
     background: var(--dark-color);
     color: var(--light-color);
