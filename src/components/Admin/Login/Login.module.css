@@ -6,8 +6,10 @@
 }
 
 .LoginBox {
-    border: 1px solid black;
+    background-color: #f4f4f4;
+    color: #333;
     padding: 20px;
+    border-radius: 5px;
 }
 
 .LoginBox div {
@@ -16,4 +18,19 @@
 
 .LoginBox div:last-child {
     margin-bottom: 0;
+}
+
+.LoginBox button {
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: blue;
+    color: var(--light-color);
+    width: 100%;
+}
+
+.LoginBox input {
+    padding: 5px;
 }

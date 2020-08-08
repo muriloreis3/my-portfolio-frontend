@@ -23,6 +23,12 @@ main {
     margin: 10px 0;
 }
 
+.loginLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .cardWrapper {
     padding: 20px;
     display: flex;

@@ -8,19 +8,15 @@ export default function Login() {
     return (
         <div className={classes.Login}>
             <div className={classesBox.join(' ')}>
-                <div>
-                    <Logo />
-                </div>
-                <div>
-                    <label htmlFor="">Username</label>
-                    <input type="text" name="username"/>
+                <div className="loginLogo">
+                    <Logo width="150px"/>
                 </div>
                 <div>
                     <label htmlFor="">Password</label>
                     <input type="password" name="password"/>
                 </div>
                 <div>
-                    <input type="submit" value="Login"/>
+                    <button>Login</button>
                 </div>
             </div>
         </div>
