@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import * as API from '../../../api/api';
 
 export default function Article(props) {
     const [article, setArticle] = useState({})
     useEffect(() => {
-        Axios.get('http://localhost:5000/articles/'+ props.match.params.id,{
-            headers: {                  
-                "Access-Control-Allow-Origin": "*"
-            }
-        })
-        .then(resp => {
-            console.log(resp.data);
-            setArticle(resp.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        (async () => setArticle(await API.getArticle(props.match.params.id)))();
     }, [props.match.params.id])
 
     return (

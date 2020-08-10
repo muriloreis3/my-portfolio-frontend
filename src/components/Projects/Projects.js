@@ -1,22 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import Axios from 'axios';
+import * as API from '../../api/api';
 
 import ProjectCard from './ProjectCard/ProjectCard'
 
 export default function Projects(props) {
     const [projects, setProjects] = useState([])
     useEffect(() => {
-        Axios.get('http://localhost:5000/projects',{
-                headers: {                  
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-            .then(resp => {
-                setProjects(resp.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        (async () =>  setProjects(await API.getProjects()))();
     }, []);
 
     const openProject = (id) => {

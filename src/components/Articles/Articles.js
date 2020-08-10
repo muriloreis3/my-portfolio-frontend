@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Axios from 'axios'
+import * as API from '../../api/api';
 
 import ArticleCard from './ArticleCard/ArticleCard';
 
@@ -7,17 +7,7 @@ export default function Articles(props) {
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
-        Axios.get('http://localhost:5000/articles',{
-                headers: {                  
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-            .then(resp => {
-                setArticles(resp.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        (async () => setArticles(await API.getArticles()) )();
     }, []);
 
     const openArticle = (id) => {

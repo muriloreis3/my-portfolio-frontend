@@ -1,22 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import Axios from 'axios';
-
+import * as API from '../../../api/api';
 import ProjectIcons from '../ProjectIcons/ProjectIcons'
 
 export default function Project(props) {
     const [project, setProject] = useState({})
     useEffect(() => {
-        Axios.get('http://localhost:5000/projects/'+ props.match.params.id,{
-            headers: {                  
-                "Access-Control-Allow-Origin": "*"
-            }
-        })
-        .then(resp => {
-            setProject(resp.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        (async () =>  setProject(await API.getProject(props.match.params.id)))();
     }, [props.match.params.id])
 
     return (
