@@ -1,43 +1,33 @@
 .Header {
-    display: flex;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid black;
 }
 
 .Header ul {
-    display: flex;
     list-style: none;
+    display: flex;
 }
 
 .Header li {
-    padding: 5px;
-    border-right: 1px solid black;
+    margin: 0 10px;
 }
 
-.Header li:last-child {
-    border: none
-}
-
-.Header a {
+.Header li a {
     text-decoration: none;
-    cursor: pointer;
-    margin: 0 5px;
+    font-size: 20px;
 }
 
-.Header a:hover,
-.Header a:active,
-.Header a.active {
+.Header li a:hover,
+.Header li a:active,
+.Header li a.active {
     opacity: 0.8;
 }
 
-.Header nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.Header .Logo a:hover {
-    opacity: 1;
+.Logo {
+    margin: 0 10px;
 }
