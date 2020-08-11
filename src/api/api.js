@@ -2,7 +2,12 @@ import Axios from 'axios';
 
 export const getOwner = async () => {
     try {
-        Axios.get('http://localhost:5000/api/owner/')   
+        const owner = await Axios.get('http://localhost:5000/api/owner/',{
+            headers: {                  
+                "Access-Control-Allow-Origin": "*"
+            }
+        });
+        return owner.data;
     } catch (error) {
         throw new Error(error);
     }
