@@ -13,6 +13,20 @@ export const getOwner = async () => {
     }
 }
 
+export const login = async (password) => {
+    try {
+        const owner = await Axios.post('http://localhost:5000/api/login/',{},{
+            auth: {
+                username: '',
+                password: password
+            }
+        });
+        return owner.data.token;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 export const getArticle = async (id) => {
     try {
         const article = await Axios.get('http://localhost:5000/api/articles/'+ id,{
