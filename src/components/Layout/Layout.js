@@ -9,6 +9,7 @@ import Projects from '../../containers/Projects/Projects';
 import Project from '../../containers/Projects/Project/Project';
 import Contact from '../Contact/Contact';
 import About from '../../containers/About/About';
+import NotFound from '../NotFound/NotFound';
 
 export default function Layout(props) {
     return (
@@ -22,6 +23,7 @@ export default function Layout(props) {
                     <Route path={ props.match.path + 'projects' } component={Projects}/>
                     <Route path={ props.match.path + 'contact' } component={Contact} />
                     <Route path={ props.match.path + '/' } exact component={About}/>
+                    <Route component={NotFound}/>
                 </Switch>
             </main>
             <Footer />
