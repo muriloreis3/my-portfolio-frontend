@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Login from './Login/Login'
-import Home from './Home/Home'
+import Login from '../../containers/Login/Login';
+import Home from '../../containers/Admin/Home/Home';
 
 export default function Admin(props) {
     return (

@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 
-import Logo from '../../Layout/Logo/Logo';
+import Logo from '../../components/Layout/Logo/Logo';
 import classes from './Login.module.css';
-import * as API from '../../../api/api';
-import AuthContext from '../../../context/AuthContext';
+import * as API from '../../api/api';
+import AuthContext from '../../context/AuthContext';
 
 
 function Login(props) {

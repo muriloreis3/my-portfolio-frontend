@@ -3,12 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import Articles from '../Articles/Articles';
-import Article from '../Articles/Article/Article';
-import Projects from '../Projects/Projects';
-import Project from '../Projects/Project/Project';
+import Articles from '../../containers/Articles/Articles';
+import Article from '../../containers/Articles/Article/Article';
+import Projects from '../../containers/Projects/Projects';
+import Project from '../../containers/Projects/Project/Project';
 import Contact from '../Contact/Contact';
-import About from '../About/About';
+import About from '../../containers/About/About';
 
 export default function Layout(props) {
     return (

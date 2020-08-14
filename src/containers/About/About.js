@@ -7,7 +7,12 @@ export default function About(props) {
     const [owner, setOwner] = useState({});
 
     useEffect(() => {
-        (async () =>  setOwner(await API.getOwner()))();
+        API.getOwner()
+            .then(resp => {
+                setOwner(resp);
+            }).catch(error => {
+                console.log(error);
+            });
     }, [])
 
     return (

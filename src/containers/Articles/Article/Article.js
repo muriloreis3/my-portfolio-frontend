@@ -4,7 +4,12 @@ import * as API from '../../../api/api';
 export default function Article(props) {
     const [article, setArticle] = useState({})
     useEffect(() => {
-        (async () => setArticle(await API.getArticle(props.match.params.id)))();
+        API.getArticle(props.match.params.id)
+            .then(resp => {
+                setArticle(resp);
+            }).catch(error => {
+                console.log(error);
+            });
     }, [props.match.params.id])
 
     return (

@@ -1,11 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import * as API from '../../../api/api';
-import ProjectIcons from '../ProjectIcons/ProjectIcons'
+import ProjectIcons from '../../../components/Projects/ProjectIcons/ProjectIcons'
 
 export default function Project(props) {
     const [project, setProject] = useState({})
+
     useEffect(() => {
-        (async () =>  setProject(await API.getProject(props.match.params.id)))();
+        API.getProject(props.match.params.id)
+            .then(resp => {
+                setProject(resp);
+            }).catch(error => {
+                console.log(error);
+            });
     }, [props.match.params.id])
 
     return (
