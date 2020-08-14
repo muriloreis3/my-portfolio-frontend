@@ -1,0 +1,30 @@
+.Menu {
+    padding: 20px;
+    width: max-content;
+    height: 100vh;
+    border-right: 1px solid black;
+}
+
+.Menu ul {
+    list-style: none;
+}
+
+.Menu li {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.Menu li a {
+    text-decoration: none;
+}
+
+.Menu li a:hover,
+.Menu li a:active,
+.Menu li a.active {
+    opacity: 0.8;
+}
+
+.Avatar img {
+    border-radius: 50%;
+}
