@@ -1,13 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import Login from "../../containers/Login/Login";
-import Home from "../../containers/Admin/Home/Home";
+import Owner from "../../containers/Admin/Owner/Owner";
+import HomeMenu from "./HomeMenu/HomeMenu";
+import * as API from "../../api/api";
 import NotFound from "../NotFound/NotFound";
 import { AuthContext } from "../../context/AuthContext";
+import classes from './Admin.module.css'
 
 export default function Admin(props) {
   const { token } = useContext(AuthContext);
+  const [owner, setOwner] = useState({});
+
+  useEffect(() => {
+    API.getOwner()
+      .then((resp) => {
+        setOwner(resp);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [])
 
   let content = (
     <Switch>
@@ -23,15 +37,15 @@ export default function Admin(props) {
 
   if (token !== null) {
     content = (
-      <Switch>
-        <Route path={props.match.path + "/home"} component={Home} />
-        <Redirect
-          exact
-          path={props.match.path}
-          to={props.match.path + "/home"}
-        />
-        <Route component={NotFound} />
-      </Switch>
+      <div className={classes.Admin}>
+        <HomeMenu owner={owner} />
+        <Switch>
+          <Route path={props.match.path + "/owner"}  component={Owner}/>
+          <Route path={props.match.path + "/articles"}  />
+          <Route path={props.match.path + "/projects"}  />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     );
   }
   return content;
