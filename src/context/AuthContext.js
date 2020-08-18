@@ -12,12 +12,12 @@ const AuthContextProvider = (props) => {
   const [token, setToken] = useState(null);
   const [error, setError] = useState(null);
 
-  const login = (password) => {
+  const login = (password, redirect) => {
     API.login(password)
       .then((resp) => {
         setToken(resp);
         setError(null);
-        localStorage.setItem("token", resp);
+        redirect();
       })
       .catch((error) => {
         setError(error.message);

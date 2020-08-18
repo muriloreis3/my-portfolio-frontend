@@ -4,16 +4,16 @@ import { Switch, Route } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import Admin from './components/Admin/Admin';
-import AuthContext from './context/AuthContext';
+import AuthContextProvider from './context/AuthContext';
 
 function App() {
   return (
-    <AuthContext.Provider value={{token: null}}>
+    <AuthContextProvider>
       <Switch>
         <Route path="/admin" component={Admin}/>
         <Route path="/" component={Layout}/>
       </Switch>
-    </AuthContext.Provider>
+    </AuthContextProvider>
   );
 }
 
