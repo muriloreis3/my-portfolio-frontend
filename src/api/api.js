@@ -27,6 +27,19 @@ export const login = async (password) => {
     }
 }
 
+export const verify = async (token) => {
+    try {
+        const resp = await Axios.post('http://localhost:5000/api/verify/',null,{
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        return resp;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 export const getArticle = async (id) => {
     try {
         const article = await Axios.get('http://localhost:5000/api/articles/'+ id,{

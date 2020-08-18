@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import Admin from './components/Admin/Admin';
-import AuthContextProvider from './context/AuthContext';
+import { AuthContext } from './context/AuthContext';
+import * as API from './api/api';
 
 function App() {
+  const authContext = useContext(AuthContext);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      API.verify(token)
+        .then(resp => {
+          authContext.setToken(token);
+        }).catch(error => {
+          console.log(error);
+          localStorage.removeItem('token');
+          authContext.setToken(null);
+        })
+    }
+  }, [authContext]);
+
   return (
-    <AuthContextProvider>
       <Switch>
         <Route path="/admin" component={Admin}/>
         <Route path="/" component={Layout}/>
       </Switch>
-    </AuthContextProvider>
   );
 }
 

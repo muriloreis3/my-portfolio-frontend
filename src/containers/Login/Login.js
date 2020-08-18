@@ -13,8 +13,9 @@ function Login(props) {
   };
 
   const sendAuth = () => {
-    login(password, () => {
+    login(password, (token) => {
       props.history.push("/admin/home");
+      localStorage.setItem('token', token);
     });
   };
 

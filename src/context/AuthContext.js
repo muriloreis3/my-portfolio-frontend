@@ -6,6 +6,7 @@ export const AuthContext = React.createContext({
   error: null,
   login: () => {},
   logout: () => {},
+  setToken: () => {},
 });
 
 const AuthContextProvider = (props) => {
@@ -17,7 +18,7 @@ const AuthContextProvider = (props) => {
       .then((resp) => {
         setToken(resp);
         setError(null);
-        redirect();
+        redirect(resp);
       })
       .catch((error) => {
         setError(error.message);
@@ -32,7 +33,13 @@ const AuthContextProvider = (props) => {
 
   return (
     <AuthContext.Provider
-      value={{ token: token, error: error, login: login, logout: logout }}
+      value={{
+        token: token,
+        error: error,
+        login: login,
+        logout: logout,
+        setToken: setToken,
+      }}
     >
       {props.children}
     </AuthContext.Provider>
