@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import * as API from "../../../api/api";
 import classes from "./Owner.module.css";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Owner = (props) => {
+  const { token } = useContext(AuthContext);
   const [owner, setOwner] = useState({
     name: "",
     password: "",
@@ -23,15 +25,44 @@ const Owner = (props) => {
 
   const saveOwner = (event) => {
     event.preventDefault();
+    API.saveOwner(owner, token)
+      .then((resp) => {})
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const onChangeBioHandler = (event) => {};
+  const onChangeBioHandler = (event) => {
+    const value = event.target.value;
+    setOwner((prevOwner) => ({
+      ...prevOwner,
+      bio: value,
+    }));
+  };
 
-  const onChangeEmailHandler = (event) => {};
+  const onChangeEmailHandler = (event) => {
+    const value = event.target.value;
+    setOwner((prevOwner) => ({
+      ...prevOwner,
+      email: value,
+    }));
+  };
 
-  const onChangeNameHandler = (event) => {};
+  const onChangeNameHandler = (event) => {
+    const value = event.target.value;
+    setOwner((prevOwner) => ({
+      ...prevOwner,
+      name: value,
+    }));
+  };
 
-  const onChangePasswordHandler = (event) => {};
+  const onChangePasswordHandler = (event) => {
+    const value = event.target.value;
+    setOwner((prevOwner) => ({
+      ...prevOwner,
+      password: value,
+    }));
+  };
 
   return (
     <div className={classes.Owner}>
