@@ -14,24 +14,11 @@ export const getOwner = async () => {
 };
 
 export const saveOwner = async (owner, token) => {
-  let objOwner;
-  if (owner.password === "") {
-    objOwner = {
-      bio: owner.bio,
-      email: owner.email,
-      name: owner.name,
-    };
-  } else {
-    objOwner = {
-      bio: owner.bio,
-      email: owner.email,
-      password: owner.password,
-      name: owner.name,
-    };
+  if (owner.password === undefined || owner.password === "") {
+    delete owner.password;
   }
-
   try {
-    await Axios.patch("http://localhost:5000/api/owner/", objOwner, {
+    await Axios.patch("http://localhost:5000/api/owner/", owner, {
       headers: {
         "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${token}`,

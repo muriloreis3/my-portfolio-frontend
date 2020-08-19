@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import * as API from "../../../api/api";
 import classes from "./Owner.module.css";
 import { AuthContext } from "../../../context/AuthContext";
+import Form from "../../../components/UI/Form/form";
 
 const Owner = (props) => {
   const { token } = useContext(AuthContext);
@@ -23,8 +24,7 @@ const Owner = (props) => {
       });
   }, [setOwner]);
 
-  const saveOwner = (event) => {
-    event.preventDefault();
+  const saveOwner = (owner) => {    
     API.saveOwner(owner, token)
       .then((resp) => {})
       .catch((error) => {
@@ -32,48 +32,15 @@ const Owner = (props) => {
       });
   };
 
-  const onChangeBioHandler = (event) => {
-    const value = event.target.value;
-    setOwner((prevOwner) => ({
-      ...prevOwner,
-      bio: value,
-    }));
-  };
-
-  const onChangeEmailHandler = (event) => {
-    const value = event.target.value;
-    setOwner((prevOwner) => ({
-      ...prevOwner,
-      email: value,
-    }));
-  };
-
-  const onChangeNameHandler = (event) => {
-    const value = event.target.value;
-    setOwner((prevOwner) => ({
-      ...prevOwner,
-      name: value,
-    }));
-  };
-
-  const onChangePasswordHandler = (event) => {
-    const value = event.target.value;
-    setOwner((prevOwner) => ({
-      ...prevOwner,
-      password: value,
-    }));
-  };
-
   return (
     <div className={classes.Owner}>
-      <form onSubmit={saveOwner}>
+      <Form submited={saveOwner} submitText="Save">
         <div className={classes.formGroup}>
           <label htmlFor="name">Name</label>
           <input
             type="text"
             name="name"
             value={owner.name}
-            onChange={onChangeNameHandler}
           />
         </div>
         <div className={classes.formGroup}>
@@ -81,16 +48,14 @@ const Owner = (props) => {
           <input
             type="password"
             name="password"
-            onChange={onChangePasswordHandler}
           />
         </div>
         <div className={classes.formGroup}>
           <label htmlFor="email">Email</label>
           <input
-            type="text"
-            name="name"
+            type="email"
+            name="email"
             value={owner.email}
-            onChange={onChangeEmailHandler}
           />
         </div>
         <div className={classes.formGroup}>
@@ -101,11 +66,9 @@ const Owner = (props) => {
             cols="30"
             rows="10"
             value={owner.bio}
-            onChange={onChangeBioHandler}
           ></textarea>
         </div>
-        <button>Save</button>
-      </form>
+      </Form>
     </div>
   );
 };
