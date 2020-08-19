@@ -2,13 +2,15 @@ main {
     margin-top: 150px
 }
 
-.card {
-    padding: 20px;
-    border: 1px solid black;
-    margin: 10px 0;
-    cursor: pointer;
+.ProjectTitle {
+    display: flex;
+    align-items: center;
 }
 
-.cardWrapper {
-    margin: 10px;
+.ProjectTitle h2 {
+    margin-right: 5px;
+}
+
+.ProjectTitle a {
+    margin: 0 5px;
 }

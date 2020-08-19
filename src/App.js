@@ -24,10 +24,10 @@ function App() {
   }, [authContext]);
 
   return (
-      <Switch>
-        <Route path="/admin" component={Admin}/>
-        <Route path="/" component={Layout}/>
-      </Switch>
+    <Switch>
+      <Route path="/admin" component={Admin}/>
+      <Route path="/" component={Layout}/>
+    </Switch>
   );
 }
 

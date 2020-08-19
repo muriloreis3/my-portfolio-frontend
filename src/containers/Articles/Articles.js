@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import * as API from '../../api/api';
 
-import ArticleList from '../../components/Articles/ArticleList/ArticleList';
+import ArticleList from '../../components/ArticleList/ArticleList';
 
 export default function Articles(props) {
     const [articles, setArticles] = useState([])
