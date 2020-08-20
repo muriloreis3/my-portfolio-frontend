@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import classes from "./modal.module.css";
+import { Fragment } from "react";
 
 const Modal = (props) => {
   const [show, setShow] = useState(true);
@@ -10,13 +11,15 @@ const Modal = (props) => {
     setShow(false);
   };
 
-  const classNames = [classes.Backdrop];
-  show ? classNames.push(classes.Show) : classNames.push(classes.Hide);
-
+  const classBackdrop = [classes.Backdrop];
+  const classModal = [classes.Modal];
+  show ? classBackdrop.push(classes.Show) : classBackdrop.push(classes.Hide);
+  show ? classModal.push(classes.Show) : classModal.push(classes.Hide);
   return (
-    <div className={classNames.join(" ")} onClick={close}>
-      <div className={classes.Modal}>{props.children}</div>
-    </div>
+    <Fragment>
+      <div className={classBackdrop.join(" ")} onClick={close}></div>
+      <div className={classModal.join(" ")}>{props.children}</div>
+    </Fragment>
   );
 };
 

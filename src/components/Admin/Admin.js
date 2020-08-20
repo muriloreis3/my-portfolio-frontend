@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "../../containers/Login/Login";
 import Owner from "../../containers/Admin/Owner/Owner";
 import Articles from "../../containers/Admin/Articles/Articles"
+import Article from "../../containers/Admin/Articles/Article/Article"
 import HomeMenu from "./HomeMenu/HomeMenu";
 import * as API from "../../api/api";
 import NotFound from "../NotFound/NotFound";
@@ -43,6 +44,8 @@ export default function Admin(props) {
         <Switch>
           <Route path={props.match.path + "/owner"}  component={Owner}/>
           <Route path={props.match.path + "/articles"}  component={Articles}/>
+          <Route path={props.match.path + "/article/:id"}  component={Article}/>
+          <Route path={props.match.path + "/article/"}  component={Article}/>
           <Route path={props.match.path + "/projects"}  />
           <Route component={NotFound} />
         </Switch>

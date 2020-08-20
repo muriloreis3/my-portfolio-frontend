@@ -11,9 +11,9 @@ const ArticleList = (props) => {
                     <Card 
                         key={article._id} clicked={() => props.openArticle(article._id)}>
                         {props.admin ? 
-                            <div class={classes.Delete}>
+                            <div className={classes.Delete}>
                                 <div onClick={props.deleted}>
-                                    <i class="fas fa-trash"></i>
+                                    <i className="fas fa-trash"></i>
                                 </div>
                             </div>: null}   
                         <h1>{article.title}</h1>
