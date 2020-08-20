@@ -5,7 +5,8 @@ import classes from "./Article.module.css";
 import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Article(props) {
-  const ref = useRef();
+  const ref = useRef(null);
+  const [articleImage, setArticleImage] = useState(null);
   const [article, setArticle] = useState({
     title: "",
     content: "",
@@ -25,12 +26,23 @@ export default function Article(props) {
     }
   }, [props.match.params.id]);
 
+  const saveArticleImage = (id, token) => {
+    const formData = new FormData();
+    formData.append("image", articleImage);
+    console.log(ref);
+    API.saveArticleImage(formData, id, token)
+      .then((resp) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const saveArticle = (event) => {
     event.preventDefault();
     if (article._id) {
       API.editArticle(article, token)
         .then((resp) => {
-          setArticle(resp);
+          saveArticleImage(resp._id, token);
         })
         .catch((error) => {
           console.log(error.message);
@@ -38,19 +50,12 @@ export default function Article(props) {
     } else {
       API.createArticle(article, token)
         .then((resp) => {
-          setArticle(resp);
+          saveArticleImage(resp._id, token);
         })
         .catch((error) => {
           console.log(error.message);
         });
     }
-    const formData = new FormData();
-    formData.append("image", ref.files[0]);
-    API.saveArticleImage(formData, article._id, token)
-       .then((resp) => {})
-       .catch((error) => {
-         console.log(error);
-       });
     props.history.push("/admin/articles");
   };
 
@@ -77,6 +82,10 @@ export default function Article(props) {
       content: value,
     }));
   };
+
+  const fileChangeHandler = (event) => {
+    setArticleImage(event.target.files[0]);
+  }
 
   return (
     <div className={classes.Article}>
@@ -114,7 +123,7 @@ export default function Article(props) {
             id="avatar"
             name="avatar"
             accept="image/png, image/jpeg"
-            ref={ref}
+            onChange={fileChangeHandler}
           ></input>
         </div>
         <button>Save</button>

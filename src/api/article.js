@@ -23,7 +23,7 @@ export const editArticle = async (article, token) => {
     content: article.content,
   };
   try {
-    await Axios.patch(
+    const resp = await Axios.patch(
       "http://localhost:5000/api/articles/" + article._id,
       objArticle,
       {
@@ -33,7 +33,7 @@ export const editArticle = async (article, token) => {
         },
       }
     );
-    return {};
+    return resp.data;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -46,12 +46,13 @@ export const createArticle = async (article, token) => {
     content: article.content,
   };
   try {
-    await Axios.post("http://localhost:5000/api/articles/", objArticle, {
+    const article = await Axios.post("http://localhost:5000/api/articles/", objArticle, {
       headers: {
         "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${token}`,
       },
     });
+    return article.data;
   } catch (error) {
     throw new Error(error.message);
   }

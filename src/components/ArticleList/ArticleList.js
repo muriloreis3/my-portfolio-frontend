@@ -4,12 +4,15 @@ import Card from '../UI/Card/card';
 import classes from './ArticleList.module.css'
 
 const ArticleList = (props) => {
+    console.log(props.articles)
     return (
         <Fragment>
             { props.articles.map(article => {
                 return (
                     <Card 
-                        key={article._id} clicked={() => props.openArticle(article._id)}>
+                        key={article._id} 
+                        clicked={() => props.openArticle(article._id)}
+                        image={article.image ? article.image.toString() : null}>
                         {props.admin ? 
                             <div className={classes.Delete}>
                                 <div onClick={props.deleted}>
