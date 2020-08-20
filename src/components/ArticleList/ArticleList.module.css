@@ -1,0 +1,5 @@
+.Delete {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 5px;
+}

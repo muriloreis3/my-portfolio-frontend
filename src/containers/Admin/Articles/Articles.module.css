@@ -1,0 +1,13 @@
+.Button {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.Button button {
+    margin: 10px;
+    border-radius: 50%;
+    font-size: 30px;
+    height: 50px;
+    width: 50px;
+}

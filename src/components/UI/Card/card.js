@@ -8,7 +8,7 @@ const card = (props) => {
             <div className={classes.Image}>
                 <img src={`data:image/jpeg;base64,${props.image}`} alt=""/>
             </div>
-            <div>
+            <div className={classes.Content}>
                 {props.children}
             </div>
         </div>

@@ -19,3 +19,7 @@ main {
     display: flex;
     flex-direction: column;
 }
+
+.cardWrapper {
+    width: 80%;
+}

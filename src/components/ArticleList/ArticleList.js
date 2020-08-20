@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 
 import Card from '../UI/Card/card';
+import classes from './ArticleList.module.css'
 
 const ArticleList = (props) => {
     return (
@@ -9,6 +10,12 @@ const ArticleList = (props) => {
                 return (
                     <Card 
                         key={article._id} clicked={() => props.openArticle(article._id)}>
+                        {props.admin ? 
+                            <div class={classes.Delete}>
+                                <div onClick={props.deleted}>
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                            </div>: null}   
                         <h1>{article.title}</h1>
                         <p>{article.content}</p>
                     </Card>
