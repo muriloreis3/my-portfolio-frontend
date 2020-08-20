@@ -2,7 +2,8 @@ export {
   getOwner,
   login,
   saveOwner,
-  verify
+  verify,
+  saveOwnerAvatar
 } from './owner';
 export {
   createArticle,

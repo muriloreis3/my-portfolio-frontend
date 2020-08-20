@@ -15,7 +15,7 @@ const ArticleList = (props) => {
                         image={article.image ? article.image.toString() : null}>
                         {props.admin ? 
                             <div className={classes.Delete}>
-                                <div onClick={props.deleted}>
+                                <div onClick={() => props.onDeleteArticle(article._id)}>
                                     <i className="fas fa-trash"></i>
                                 </div>
                             </div>: null}   

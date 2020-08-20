@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import * as API from "../../../../api/api";
 import classes from "./Article.module.css";
 import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Article(props) {
-  const ref = useRef(null);
   const [articleImage, setArticleImage] = useState(null);
   const [article, setArticle] = useState({
     title: "",
@@ -29,7 +28,6 @@ export default function Article(props) {
   const saveArticleImage = (id, token) => {
     const formData = new FormData();
     formData.append("image", articleImage);
-    console.log(ref);
     API.saveArticleImage(formData, id, token)
       .then((resp) => {})
       .catch((error) => {

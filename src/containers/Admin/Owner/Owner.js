@@ -6,6 +6,7 @@ import { AuthContext } from "../../../context/AuthContext";
 
 const Owner = (props) => {
   const { token } = useContext(AuthContext);
+  const [avatar, setAvatar] = useState(null)
   const [owner, setOwner] = useState({
     name: "",
     password: "",
@@ -23,10 +24,22 @@ const Owner = (props) => {
       });
   }, [setOwner]);
 
+  const saveOwnerAvatar = (id, token) => {
+    const formData = new FormData();
+    formData.append("avatar", avatar);
+    API.saveOwnerAvatar(formData, id, token)
+      .then((resp) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   const saveOwner = (event) => {
     event.preventDefault();
     API.saveOwner(owner, token)
-      .then((resp) => {})
+      .then((resp) => {
+        saveOwnerAvatar(owner._id, token)
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -63,6 +76,10 @@ const Owner = (props) => {
       password: value,
     }));
   };
+
+  const fileChangeHandler = (event) => {
+    setAvatar(event.target.files[0]);
+  }
 
   return (
     <div className={classes.Owner}>
@@ -104,6 +121,13 @@ const Owner = (props) => {
             onChange={onChangeBioHandler}
           ></textarea>
         </div>
+        <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg"
+            onChange={fileChangeHandler}
+          ></input>
         <button>Save</button>
       </form>
     </div>

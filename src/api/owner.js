@@ -77,3 +77,20 @@ export const verify = async (token) => {
     throw new Error(error.message);
   }
 };
+
+export const saveOwnerAvatar = async (formData, id, token) => {
+  try {
+    await Axios.post(
+      "http://localhost:5000/api/owner/avatar",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
