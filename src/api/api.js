@@ -15,5 +15,9 @@ export {
 } from './article';
 export {
   getProject,
-  getProjects
+  getProjects,
+  createProject,
+  deleteProject,
+  editProject,
+  saveProjectImage
 } from './project'

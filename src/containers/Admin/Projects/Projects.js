@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 
 import ProjectList from "../../../components/Projects/ProjectList/ProjectList";
@@ -8,8 +8,11 @@ import Spinner from "../../../components/UI/Spinner/spinner";
 import * as API from "../../../api/api";
 import classes from "./Projects.module.css";
 
+import { AuthContext } from "../../../context/AuthContext";
+
 export default function Projects(props) {
   const location = useLocation();
+  const {token } = useContext(AuthContext);
   const [deleteId, setDeleteId] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +45,17 @@ export default function Projects(props) {
       setDeleteId(id);
   };
 
-  const deleteProjectApi = () => {};
+  const deleteProjectApi = () => {
+    API.deleteProject(deleteId, token)
+    .then((resp) => {
+      setDeleteId(null);
+      const updatedProjects = projects.filter(project => project._id !== resp._id);
+      setProjects(updatedProjects);
+    })
+    .catch((error) => {
+      setError(error.message);
+    });
+  };
 
   let content = <Spinner />;
 

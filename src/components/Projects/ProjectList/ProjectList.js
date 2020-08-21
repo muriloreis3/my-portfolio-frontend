@@ -12,6 +12,7 @@ const ProjectList = (props) => {
           <Card
             key={project._id}
             clicked={() => props.openProject(project._id)}
+            image={project.image ? project.image.toString() : null}
           >
             <div className="ProjectTitle">
               <h2>{project.title}</h2>

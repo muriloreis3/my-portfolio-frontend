@@ -11,6 +11,7 @@ import * as API from "../../api/api";
 import NotFound from "../NotFound/NotFound";
 import { AuthContext } from "../../context/AuthContext";
 import classes from './Admin.module.css'
+import Project from "../../containers/Admin/Projects/Project/Project";
 
 export default function Admin(props) {
   const { token } = useContext(AuthContext);
@@ -48,6 +49,8 @@ export default function Admin(props) {
           <Route path={props.match.path + "/article/:id"}  component={Article}/>
           <Route path={props.match.path + "/article/"}  component={Article}/>
           <Route path={props.match.path + "/projects"}  component={Projects}/>
+          <Route path={props.match.path + "/project/:id"}  component={Project}/>
+          <Route path={props.match.path + "/project/"}  component={Project}/>
           <Route component={NotFound} />
         </Switch>
       </div>

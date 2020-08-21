@@ -16,6 +16,19 @@ export const getArticle = async (id) => {
   }
 };
 
+export const getArticles = async () => {
+  try {
+    const articles = await Axios.get("http://localhost:5000/api/articles/", {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+    return articles.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const editArticle = async (article, token) => {
   let objArticle = {
     title: article.title,
@@ -91,19 +104,6 @@ export const deleteArticle = async (id, token) => {
       }
     );
     return article.data;
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
-
-export const getArticles = async () => {
-  try {
-    const articles = await Axios.get("http://localhost:5000/api/articles/", {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-    return articles.data;
   } catch (error) {
     throw new Error(error.message);
   }
