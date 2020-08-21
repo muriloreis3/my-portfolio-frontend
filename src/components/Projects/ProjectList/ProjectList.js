@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 
 import Card from "../../UI/Card/card";
 import ProjectIcons from "../ProjectIcons/ProjectIcons";
+import classes from "./ProjectList.module.css";
 
 const ProjectList = (props) => {
   return (
@@ -14,9 +15,22 @@ const ProjectList = (props) => {
           >
             <div className="ProjectTitle">
               <h2>{project.title}</h2>
-              <ProjectIcons 
-                    repositoryLink={props.repositoryLink} 
-                    demonstrationLink={props.demonstrationLink}/>
+              <ProjectIcons
+                repositoryLink={project.repositoryLink}
+                demonstrationLink={project.demonstrationLink}
+              />
+              {props.admin ? (
+                <div className={classes.Delete}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      props.onDeleteProject(project._id);
+                    }}
+                  >
+                    <i className="fas fa-trash"></i>
+                  </button>
+                </div>
+              ) : null}
             </div>
             <p>{project.description}</p>
           </Card>

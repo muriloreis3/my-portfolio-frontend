@@ -5,6 +5,7 @@ import Login from "../../containers/Login/Login";
 import Owner from "../../containers/Admin/Owner/Owner";
 import Articles from "../../containers/Admin/Articles/Articles"
 import Article from "../../containers/Admin/Articles/Article/Article"
+import Projects from "../../containers/Admin/Projects/Projects";
 import HomeMenu from "./HomeMenu/HomeMenu";
 import * as API from "../../api/api";
 import NotFound from "../NotFound/NotFound";
@@ -46,7 +47,7 @@ export default function Admin(props) {
           <Route path={props.match.path + "/articles"}  component={Articles}/>
           <Route path={props.match.path + "/article/:id"}  component={Article}/>
           <Route path={props.match.path + "/article/"}  component={Article}/>
-          <Route path={props.match.path + "/projects"}  />
+          <Route path={props.match.path + "/projects"}  component={Projects}/>
           <Route component={NotFound} />
         </Switch>
       </div>
