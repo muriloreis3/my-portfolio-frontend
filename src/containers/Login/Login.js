@@ -12,30 +12,31 @@ function Login(props) {
     setPassword(event.target.value);
   };
 
-  const sendAuth = () => {
+  const sendAuth = (event) => {
+    event.preventDefault();
     login(password, (token) => {
       props.history.push("/admin/home");
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
     });
   };
 
   return (
     <div className={classes.Login}>
-      <div className={classes.Box}>
-        <div className={classes.Logo}>
-          <Logo width="150px" />
-        </div>
-        <div>
-          <label htmlFor="">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handlePassword}
-          />
-          <button onClick={sendAuth}>Login</button>
-        </div>
-      </div>
+        <form className={classes.Box} onSubmit={sendAuth}>
+          <div className={classes.Logo}>
+            <Logo width="150px" />
+          </div>
+          <div>
+            <label htmlFor="">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+            <button>Login</button>
+          </div>
+        </form>
     </div>
   );
 }
