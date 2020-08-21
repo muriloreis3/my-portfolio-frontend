@@ -3,7 +3,8 @@ export {
   login,
   saveOwner,
   verify,
-  saveOwnerAvatar
+  saveOwnerAvatar,
+  contactOwner
 } from './owner';
 export {
   createArticle,

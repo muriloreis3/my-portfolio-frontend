@@ -94,3 +94,16 @@ export const saveOwnerAvatar = async (formData, id, token) => {
     throw new Error(error.message);
   }
 }
+
+export const contactOwner = async (sendData) => {
+  try {
+    await Axios.post("http://localhost:5000/api/owner/contactme", sendData, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      }
+    })
+    return;
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
