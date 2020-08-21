@@ -4,7 +4,6 @@ import Card from '../UI/Card/card';
 import classes from './ArticleList.module.css'
 
 const ArticleList = (props) => {
-    console.log(props.articles)
     return (
         <Fragment>
             { props.articles.map(article => {
@@ -15,9 +14,7 @@ const ArticleList = (props) => {
                         image={article.image ? article.image.toString() : null}>
                         {props.admin ? 
                             <div className={classes.Delete}>
-                                <div onClick={() => props.onDeleteArticle(article._id)}>
-                                    <i className="fas fa-trash"></i>
-                                </div>
+                                <button onClick={(e) =>{ e.stopPropagation(); props.onDeleteArticle(article._id)}}><i className="fas fa-trash"></i></button>
                             </div>: null}   
                         <h1>{article.title}</h1>
                         <p>{article.content}</p>

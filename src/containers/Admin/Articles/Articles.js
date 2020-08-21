@@ -7,10 +7,15 @@ import Modal from "../../../components/UI/Modal/modal";
 import * as API from "../../../api/api";
 import { AuthContext } from "../../../context/AuthContext";
 import classes from "./Articles.module.css";
+import ConfirmModal from "../../../components/UI/Modal/ConfirmModal/ConfirmModal";
 
 const Articles = (props) => {
+  
   const location = useLocation();
   const { token } = useContext(AuthContext);
+
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,12 +43,21 @@ const Articles = (props) => {
   };
 
   const deleteArticle = (id) => {
-    API.deleteArticle(id, token)
-      .then((resp) => {})
-      .catch((error) => {
-        setError(error);
-      });
+    setIsDeleting(true);
+    setDeleteId(id);
   };
+
+  const deleteArticleApi = () => {
+    API.deleteArticle(deleteId, token)
+      .then((resp) => {
+        setDeleteId(null);
+        const updatedArticles = articles.filter(article => article._id !== resp._id);
+        setArticles(updatedArticles);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  }
 
   let content = <Spinner />;
 
@@ -59,13 +73,27 @@ const Articles = (props) => {
           onDeleteArticle={deleteArticle}
           admin
         />
+        {isDeleting && (
+          <ConfirmModal
+            show={isDeleting}
+            modalClose={() => {setIsDeleting(false); setDeleteId(null)}}
+            confirm={deleteArticleApi}
+          >
+            <p>Are you sure?</p>
+          </ConfirmModal>
+        )}
       </div>
     );
   }
 
   if (error) {
     content = (
-      <Modal show={error !== null} onClose={() => {setError(null)}}>
+      <Modal
+        show={error !== null}
+        modalClose={() => {
+          setError(null);
+        }}
+      >
         {error}
       </Modal>
     );

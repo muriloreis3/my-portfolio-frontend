@@ -16,7 +16,6 @@ function App() {
         .then(resp => {
           authContext.setToken(token);
         }).catch(error => {
-          console.log(error);
           localStorage.removeItem('token');
           authContext.setToken(null);
         })

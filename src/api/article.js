@@ -46,12 +46,16 @@ export const createArticle = async (article, token) => {
     content: article.content,
   };
   try {
-    const article = await Axios.post("http://localhost:5000/api/articles/", objArticle, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const article = await Axios.post(
+      "http://localhost:5000/api/articles/",
+      objArticle,
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return article.data;
   } catch (error) {
     throw new Error(error.message);
@@ -77,9 +81,8 @@ export const saveArticleImage = async (formData, id, token) => {
 
 export const deleteArticle = async (id, token) => {
   try {
-    await Axios.delete(
+    const article = await Axios.delete(
       "http://localhost:5000/api/articles/" + id,
-      {},
       {
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -87,6 +90,7 @@ export const deleteArticle = async (id, token) => {
         },
       }
     );
+    return article.data;
   } catch (error) {
     throw new Error(error.message);
   }
