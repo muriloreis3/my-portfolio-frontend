@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 
+import Modal from "../../../../components/UI/Modal/modal";
+import Spinner from "../../../../components/UI/Spinner/spinner";
 import * as API from "../../../../api/api";
 import classes from "./Article.module.css";
 import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Article(props) {
+  const [isLoading, setIsLoading] = useState(null);
+  const [error, setError] = useState(null);
   const [articleImage, setArticleImage] = useState(null);
   const [article, setArticle] = useState({
     title: "",
@@ -15,24 +19,33 @@ export default function Article(props) {
 
   useEffect(() => {
     if (props.match.params.id) {
+      setIsLoading(true);
       API.getArticle(props.match.params.id)
         .then((resp) => {
           setArticle(resp);
+          setError(null);
+          setIsLoading(false);
         })
         .catch((error) => {
-          console.log(error);
+          setError(error.message);
         });
     }
   }, [props.match.params.id]);
 
   const saveArticleImage = (id, token) => {
-    const formData = new FormData();
-    formData.append("image", articleImage);
-    API.saveArticleImage(formData, id, token)
-      .then((resp) => {})
-      .catch((error) => {
-        console.log(error);
-      });
+    if (articleImage) {
+      const formData = new FormData();
+      formData.append("image", articleImage);
+      API.saveArticleImage(formData, id, token)
+        .then((resp) => {
+          props.history.push("/admin/articles");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else {
+      props.history.push("/admin/articles");
+    }
   };
 
   const saveArticle = (event) => {
@@ -54,7 +67,6 @@ export default function Article(props) {
           console.log(error.message);
         });
     }
-    props.history.push("/admin/articles");
   };
 
   const titleChangedHandler = (event) => {
@@ -83,49 +95,63 @@ export default function Article(props) {
 
   const fileChangeHandler = (event) => {
     setArticleImage(event.target.files[0]);
+  };
+
+  let content = <Spinner />
+
+  if(!isLoading) {
+    content = (
+      <div className={classes.Article}>
+        <form onSubmit={saveArticle}>
+          <div className="formGroup">
+            <label htmlFor="">Title</label>
+            <input
+              type="text"
+              name="title"
+              value={article.title}
+              onChange={titleChangedHandler}
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="">Keywords</label>
+            <input
+              type="text"
+              name="keywords"
+              value={article.keywords}
+              onChange={keywordsChangedHandler}
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="">Content</label>
+            <textarea
+              name="content"
+              id=""
+              cols="30"
+              rows="10"
+              value={article.content}
+              onChange={contentChangedHandler}
+            ></textarea>
+            <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
+              onChange={fileChangeHandler}
+            ></input>
+          </div>
+          <button>Save</button>
+        </form>
+      </div>
+    );
   }
 
-  return (
-    <div className={classes.Article}>
-      <form onSubmit={saveArticle}>
-        <div className="formGroup">
-          <label htmlFor="">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={article.title}
-            onChange={titleChangedHandler}
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="">Keywords</label>
-          <input
-            type="text"
-            name="keywords"
-            value={article.keywords}
-            onChange={keywordsChangedHandler}
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="">Content</label>
-          <textarea
-            name="content"
-            id=""
-            cols="30"
-            rows="10"
-            value={article.content}
-            onChange={contentChangedHandler}
-          ></textarea>
-          <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-            onChange={fileChangeHandler}
-          ></input>
-        </div>
-        <button>Save</button>
-      </form>
-    </div>
-  );
+  if (error) {
+    content = (
+      <Modal show={error !== null} closeModal={() => setError(null)}>
+        {error}
+      </Modal>
+    );
+  }
+
+  return content;
 }

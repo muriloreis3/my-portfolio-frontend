@@ -36,16 +36,23 @@ export default function Project(props) {
   }, [props.match.params.id]);
 
   const saveProjectImage = (id, token) => {
-    const formData = new FormData();
-    formData.append("image", projectImage);
-    API.saveProjectImage(formData, id, token)
-      .then((resp) => {})
-      .catch((error) => {
-        setError(error.message);
-      });
+    if (projectImage) {
+      const formData = new FormData();
+      formData.append("image", projectImage);
+      API.saveProjectImage(formData, id, token)
+        .then((resp) => {
+          props.history.push("/admin/projects");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else {
+      props.history.push("/admin/projects");
+    }
   };
 
-  const saveProject = () => {
+  const saveProject = (event) => {
+    event.preventDefault();
     if (project._id) {
       API.editProject(project, token)
         .then((resp) => {
@@ -63,7 +70,6 @@ export default function Project(props) {
           console.log(error.message);
         });
     }
-    props.history.push("/admin/projects");
   };
 
   const titleChangedHandler = (event) => {
