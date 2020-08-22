@@ -10,3 +10,7 @@
     display: block;
     min-height: 200px;
 }
+
+.Contact button {
+    margin: 5px 0
+}

@@ -22,7 +22,39 @@ main {
     margin: 5px 0;
 }
 
+.formGroup input,
+.formGroup textarea {
+    padding: 10px;
+    outline: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+}
+
+.formGroup label {
+    margin: 8px 0;
+    font-weight: 500;
+}
+
 .cardWrapper {
     width: 80%;
     margin: auto;
+}
+
+.btn {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #54ace4;
+    color: #fff;
+    font-size: 20px;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.wrapper {
+    width: 70%;
+    max-width: 700px;
 }

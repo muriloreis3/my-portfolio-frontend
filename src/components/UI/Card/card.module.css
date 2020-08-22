@@ -9,6 +9,10 @@
     position: relative;
 }
 
+.Card:hover {
+    box-shadow: 0 2px 2px #333;
+}
+
 .Backdrop {
     background: rgba(0, 0, 0, 0.5);
     position: absolute;

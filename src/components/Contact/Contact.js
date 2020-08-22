@@ -56,6 +56,7 @@ export default function Contact(props) {
             id="name"
             value={name}
             onChange={nameChangedHandler}
+            placeholder="Your Name"
           />
         </div>
         <div className="formGroup">
@@ -66,6 +67,7 @@ export default function Contact(props) {
             id="email"
             value={email}
             onChange={emailChangedHandler}
+            placeholder="example@mail.com"
           />
         </div>
         <div className="formGroup">
@@ -76,6 +78,7 @@ export default function Contact(props) {
             id="subject"
             value={subject}
             onChange={subjectChangedHandler}
+            placeholder="What do you want to talk about?"
           />
         </div>
         <div className="formGroup">
@@ -87,7 +90,7 @@ export default function Contact(props) {
             onChange={contentChangedHandler}
           ></textarea>
         </div>
-        <button>Send</button>
+        <button className="btn">Send</button>
       </form>
     </div>
   );
