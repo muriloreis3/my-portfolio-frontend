@@ -16,6 +16,9 @@ const HomeMenu = (props) => {
                     <li><NavLink to="/admin/projects" activeClassName={classes.active}>My Projects</NavLink></li>
                 </ul>
             </nav>
+            <div className={classes.MenuEnd}>
+                <NavLink to="/admin/logout" activeClassName={classes.active}>Logout</NavLink>
+            </div>
         </div>
     );
 }

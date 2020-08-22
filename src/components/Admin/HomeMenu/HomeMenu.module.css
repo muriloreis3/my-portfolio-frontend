@@ -4,21 +4,29 @@
     height: 100%;
     min-height: 100vh;
     background: #22455b;
+    display: flex;
+    flex-direction: column;
 }
 
 .Menu ul {
     list-style: none;
 }
 
-.Menu li {
+.Menu li,
+.MenuEnd {
     text-align: center;
     margin: 20px;
     font-size: 20px;
 }
 
-.Menu li a {
+.Menu li a,
+.MenuEnd a {
     text-decoration: none;
     color: #fff;
+}
+
+.MenuEnd {
+    margin-top: auto;
 }
 
 .Menu li a:hover,
