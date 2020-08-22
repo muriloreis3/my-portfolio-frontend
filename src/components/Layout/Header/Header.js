@@ -9,7 +9,7 @@ export default function Header(props) {
     return (
         <header className={elClasses.join(' ')}>
             <div className={classes.Logo}>
-                <NavLink to="/" exact ><Logo width="25px" height="25px"/></NavLink>
+                <NavLink to="/" exact ><Logo width="50px" height="50px"/></NavLink>
             </div>
             <nav>
                 <ul>
