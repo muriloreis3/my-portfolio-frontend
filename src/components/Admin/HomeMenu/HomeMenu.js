@@ -11,9 +11,9 @@ const HomeMenu = (props) => {
             </div>
             <nav>
                 <ul>
-                    <li><NavLink to="/admin/owner">My Data</NavLink></li>
-                    <li><NavLink to="/admin/articles">My Articles</NavLink></li>
-                    <li><NavLink to="/admin/projects">My Projects</NavLink></li>
+                    <li><NavLink to="/admin/owner" activeClassName={classes.active}>My Data</NavLink></li>
+                    <li><NavLink to="/admin/articles" activeClassName={classes.active}>My Articles</NavLink></li>
+                    <li><NavLink to="/admin/projects" activeClassName={classes.active}>My Projects</NavLink></li>
                 </ul>
             </nav>
         </div>

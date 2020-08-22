@@ -63,7 +63,7 @@ export default function Projects(props) {
     content = (
       <div className="cardWrapper">
         <div className={classes.Button}>
-          <button onClick={newProject}>+</button>
+          <button className="btn" onClick={newProject}>+</button>
         </div>
         <ProjectList
           projects={projects}

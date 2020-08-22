@@ -84,7 +84,7 @@ const Owner = (props) => {
   return (
     <div className={classes.Owner}>
       <form onSubmit={saveOwner}>
-        <div className={classes.formGroup}>
+        <div className="formGroup">
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -93,7 +93,7 @@ const Owner = (props) => {
             onChange={onChangeNameHandler}
           />
         </div>
-        <div className={classes.formGroup}>
+        <div className="formGroup">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -101,7 +101,7 @@ const Owner = (props) => {
             onChange={onChangePasswordHandler}
           />
         </div>
-        <div className={classes.formGroup}>
+        <div className="formGroup">
           <label htmlFor="email">Email</label>
           <input
             type="text"
@@ -110,7 +110,7 @@ const Owner = (props) => {
             onChange={onChangeEmailHandler}
           />
         </div>
-        <div className={classes.formGroup}>
+        <div className="formGroup">
           <label htmlFor="bio">Bio</label>
           <textarea
             name="bio"
@@ -128,7 +128,7 @@ const Owner = (props) => {
             accept="image/png, image/jpeg"
             onChange={fileChangeHandler}
           ></input>
-        <button>Save</button>
+        <button className="btn">Save</button>
       </form>
     </div>
   );

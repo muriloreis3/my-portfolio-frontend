@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 
 import Card from "../UI/Card/card";
-import classes from "./ArticleList.module.css";
 
 const ArticleList = (props) => {
   return (
@@ -16,7 +15,7 @@ const ArticleList = (props) => {
             <div className="ProjectTitle">
               <h1>{article.title}</h1>
               {props.admin ? (
-                <div className={classes.Delete}>
+                <div className="delete">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();

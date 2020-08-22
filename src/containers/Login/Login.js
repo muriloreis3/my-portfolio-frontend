@@ -26,7 +26,7 @@ function Login(props) {
           <div className={classes.Logo}>
             <Logo width="150px" />
           </div>
-          <div>
+          <div className="formGroup">
             <label htmlFor="">Password</label>
             <input
               type="password"
@@ -34,7 +34,7 @@ function Login(props) {
               value={password}
               onChange={handlePassword}
             />
-            <button>Login</button>
+            <button className="btn">Login</button>
           </div>
         </form>
     </div>

@@ -1,8 +1,9 @@
 .Menu {
     padding: 20px;
     width: max-content;
-    height: 100vh;
-    border-right: 1px solid black;
+    height: 100%;
+    min-height: 100vh;
+    background: #22455b;
 }
 
 .Menu ul {
@@ -11,12 +12,13 @@
 
 .Menu li {
     text-align: center;
-    margin: 10px 0;
+    margin: 20px;
     font-size: 20px;
 }
 
 .Menu li a {
     text-decoration: none;
+    color: #fff;
 }
 
 .Menu li a:hover,

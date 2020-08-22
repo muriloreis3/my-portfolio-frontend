@@ -58,3 +58,20 @@ main {
     width: 70%;
     max-width: 700px;
 }
+
+.delete {
+    margin: 5px;
+    margin-left: auto;
+}
+
+.delete button {
+    background: transparent;
+    color: #fff;
+    border: none;
+}
+
+.delete button:hover,
+.delete button i:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}

@@ -1,5 +1,15 @@
+.Article {
+    width: 100%;
+}
+
 .Article form {
     display: flex;
     flex-direction: column;
     margin: 10px;
+    width: 80%;
+}
+
+.Article button {
+    margin: 10px 0;
+    width: 40%;
 }

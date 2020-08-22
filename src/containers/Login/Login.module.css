@@ -7,9 +7,10 @@
 }
 
 .Box {
-    border: 1px solid black;
     padding: 20px;
     text-align: center;
+    background: #22455b;
+    color: #fff;
 }
 
 .Box > div:nth-child(2) {
@@ -20,10 +21,8 @@
 }
 
 .Box button {
-    text-decoration: none;
     width: 100%;
-    padding: 5px;
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 .Logo {

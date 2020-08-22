@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 
 import Card from "../../UI/Card/card";
 import ProjectIcons from "../ProjectIcons/ProjectIcons";
-import classes from "./ProjectList.module.css";
 
 const ProjectList = (props) => {
   return (
@@ -15,13 +14,13 @@ const ProjectList = (props) => {
             image={project.image ? project.image.toString() : null}
           >
             <div className="ProjectTitle">
-              <h2>{project.title}</h2>
+              <h1>{project.title}</h1>
               <ProjectIcons
                 repositoryLink={project.repositoryLink}
                 demonstrationLink={project.demonstrationLink}
               />
               {props.admin ? (
-                <div className={classes.Delete}>
+                <div className="delete">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();

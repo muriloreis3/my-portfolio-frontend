@@ -65,7 +65,7 @@ const Articles = (props) => {
     content = (
       <div className="cardWrapper">
         <div className={classes.Button}>
-          <button onClick={newArticle}>+</button>
+          <button className="btn" onClick={newArticle}>+</button>
         </div>
         <ArticleList
           articles={articles}

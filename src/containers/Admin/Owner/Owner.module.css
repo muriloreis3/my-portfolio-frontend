@@ -1,11 +1,20 @@
+.Owner {
+    width: 100%;
+}
+
 .Owner form {
     display: flex;
     flex-direction: column;
     margin: 10px;
+    width: 100%;
 }
 
-.formGroup {
-    display: flex;
-    flex-direction: column;
-    margin: 5px 0;
+.Owner input,
+.Owner textarea {
+    width: 80%;
+}
+
+.Owner button {
+    margin: 10px 0;
+    width: 40%;
 }

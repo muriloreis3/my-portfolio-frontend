@@ -139,7 +139,7 @@ export default function Article(props) {
               onChange={fileChangeHandler}
             ></input>
           </div>
-          <button>Save</button>
+          <button className="btn">Save</button>
         </form>
       </div>
     );
