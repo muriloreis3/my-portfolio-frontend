@@ -4,3 +4,14 @@
     background: #22455b;
     color: #fff;
 }
+
+.Footer a {
+    margin: 0 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.Footer a:hover {
+    opacity: 0.8;
+}
+
