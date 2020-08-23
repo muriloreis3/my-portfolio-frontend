@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import classes from "./Contact.module.css";
 import * as API from "../../api/api";
 
 export default function Contact(props) {
+  const { register, handleSubmit, errors } = useForm();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
 
-  const sendMail = (event) => {
-    event.preventDefault();
+  const sendMail = () => {
     API.contactOwner({
       name: name,
       email: email,
@@ -47,7 +48,7 @@ export default function Contact(props) {
 
   return (
     <div className={classes.Contact}>
-      <form className="wrapper" onSubmit={sendMail}>
+      <form className="wrapper" onSubmit={handleSubmit(sendMail)}>
         <div className="formGroup">
           <label>Name</label>
           <input
@@ -57,7 +58,10 @@ export default function Contact(props) {
             value={name}
             onChange={nameChangedHandler}
             placeholder="Your Name"
+            ref={register({ required: true })}
+            className={errors.name && "inputError"}
           />
+          {errors.name && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <label>Email</label>
@@ -68,7 +72,10 @@ export default function Contact(props) {
             value={email}
             onChange={emailChangedHandler}
             placeholder="example@mail.com"
+            ref={register({ required: true })}
+            className={errors.name && "inputError"}
           />
+          {errors.name && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <label>Subject</label>
@@ -79,7 +86,10 @@ export default function Contact(props) {
             value={subject}
             onChange={subjectChangedHandler}
             placeholder="What do you want to talk about?"
+            ref={register({ required: true })}
+            className={errors.name && "inputError"}
           />
+          {errors.name && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <label>Message</label>
@@ -88,9 +98,12 @@ export default function Contact(props) {
             id="content"
             value={content}
             onChange={contentChangedHandler}
+            ref={register({ required: true })}
+            className={errors.name && "inputError"}
           ></textarea>
+          {errors.name && <span className="error">This field is required</span>}
         </div>
-        <button className="btn">Send</button>
+        <input className="btn" type="submit" value="Send" />
       </form>
     </div>
   );

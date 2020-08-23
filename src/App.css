@@ -119,3 +119,11 @@ main {
 .Content i {
   color: #333;
 }
+
+.error {
+  color: red;
+}
+
+.inputError {
+  border: 1px solid red !important;
+}
