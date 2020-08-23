@@ -9,7 +9,7 @@
     width: 80%;
 }
 
-.Article button {
+.Article input[type='submit'] {
     margin: 10px 0;
     width: 40%;
 }

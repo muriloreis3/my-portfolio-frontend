@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Editor } from '@tinymce/tinymce-react';
+import { Editor } from "@tinymce/tinymce-react";
+import { useForm } from "react-hook-form";
 
 import Modal from "../../../../components/UI/Modal/modal";
 import Spinner from "../../../../components/UI/Spinner/spinner";
@@ -8,6 +9,8 @@ import classes from "./Article.module.css";
 import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Article(props) {
+  const { register, handleSubmit, errors } = useForm();
+
   const [isLoading, setIsLoading] = useState(null);
   const [error, setError] = useState(null);
   const [articleImage, setArticleImage] = useState(null);
@@ -49,8 +52,7 @@ export default function Article(props) {
     }
   };
 
-  const saveArticle = (event) => {
-    event.preventDefault();
+  const saveArticle = () => {
     if (article._id) {
       API.editArticle(article, token)
         .then((resp) => {
@@ -102,7 +104,7 @@ export default function Article(props) {
   if (!isLoading) {
     content = (
       <div className={classes.Article}>
-        <form onSubmit={saveArticle}>
+        <form onSubmit={handleSubmit(saveArticle)}>
           <div className="formGroup">
             <label htmlFor="">Title</label>
             <input
@@ -110,7 +112,12 @@ export default function Article(props) {
               name="title"
               value={article.title}
               onChange={titleChangedHandler}
+              ref={register({ required: true })}
+              className={errors.title && "inputError"}
             />
+            {errors.title && (
+              <span className="error">This field is required</span>
+            )}
           </div>
           <div className="formGroup">
             <label htmlFor="">Keywords</label>
@@ -119,17 +126,28 @@ export default function Article(props) {
               name="keywords"
               value={article.keywords}
               onChange={keywordsChangedHandler}
+              ref={register({ required: true })}
+              className={errors.keywords && "inputError"}
             />
+            {errors.keywords && (
+              <span className="error">This field is required</span>
+            )}
           </div>
           <div className="formGroup">
             <label htmlFor="">Content</label>
             <Editor
+              name="content"
               value={article.content}
               init={{
-                menubar: false
+                menubar: false,
               }}
+              ref={register({ required: true })}
+              className={errors.content && "inputError"}
               onEditorChange={contentChangedHandler}
             />
+            {errors.content && (
+              <span className="error">This field is required</span>
+            )}
           </div>
           <div className="formGroup">
             <input

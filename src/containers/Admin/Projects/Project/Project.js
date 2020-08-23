@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Editor } from '@tinymce/tinymce-react';
+import { Editor } from "@tinymce/tinymce-react";
+import { useForm } from "react-hook-form";
 
 import Modal from "../../../../components/UI/Modal/modal";
 import Spinner from "../../../../components/UI/Spinner/spinner";
@@ -8,6 +9,7 @@ import * as API from "../../../../api/api";
 import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Project(props) {
+  const { register, handleSubmit, errors } = useForm();
   const { token } = useContext(AuthContext);
   const [projectImage, setProjectImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,8 +54,7 @@ export default function Project(props) {
     }
   };
 
-  const saveProject = (event) => {
-    event.preventDefault();
+  const saveProject = () => {
     if (project._id) {
       API.editProject(project, token)
         .then((resp) => {
@@ -121,7 +122,7 @@ export default function Project(props) {
   if (!isLoading) {
     content = (
       <div className={classes.Project}>
-        <form onSubmit={saveProject}>
+        <form onSubmit={handleSubmit(saveProject)}>
           <div className="formGroup">
             <label htmlFor="">Title</label>
             <input
@@ -129,7 +130,12 @@ export default function Project(props) {
               name="title"
               value={project.title}
               onChange={titleChangedHandler}
+              ref={register({ required: true })}
+              className={errors.title && "inputError"}
             />
+            {errors.title && (
+              <span className="error">This field is required</span>
+            )}
           </div>
           <div className="formGroup">
             <label htmlFor="">Keywords</label>
@@ -138,35 +144,52 @@ export default function Project(props) {
               name="keywords"
               value={project.keywords}
               onChange={keywordsChangedHandler}
+              ref={register({ required: true })}
+              className={errors.keywords && "inputError"}
             />
+            {errors.keywords && (
+              <span className="error">This field is required</span>
+            )}
           </div>
           <div className="formGroup">
             <label htmlFor="">Demonstration Link</label>
             <input
               type="text"
-              name="keywords"
+              name="demonstrationLink"
               value={project.demonstrationLink}
               onChange={demonstrationLinkChangedHandler}
+              ref={register({ required: true })}
+              className={errors.demonstrationLink && "inputError"}
             />
+            {errors.demonstrationLink && (
+              <span className="error">This field is required</span>
+            )}
           </div>
           <div className="formGroup">
             <label htmlFor="">Repository Link</label>
             <input
               type="text"
-              name="keywords"
+              name="repositoryLink"
               value={project.repositoryLink}
               onChange={repositoryLinkChangedHandler}
+              ref={register}
             />
           </div>
           <div className="formGroup">
             <label htmlFor="">Description</label>
             <Editor
+              name="description"
               value={project.description}
               init={{
-                menubar: false
+                menubar: false,
               }}
               onEditorChange={descriptionChangedHandler}
+              ref={register({ required: true })}
+              className={errors.description && "inputError"}
             />
+            {errors.description && (
+              <span className="error">This field is required</span>
+            )}
           </div>
           <div className="formGroup">
             <input

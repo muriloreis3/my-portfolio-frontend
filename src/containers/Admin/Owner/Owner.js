@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Editor } from '@tinymce/tinymce-react';
+import { Editor } from "@tinymce/tinymce-react";
+import { useForm } from "react-hook-form";
 
 import * as API from "../../../api/api";
 import classes from "./Owner.module.css";
 import { AuthContext } from "../../../context/AuthContext";
 
 const Owner = (props) => {
+  const { register, handleSubmit, errors } = useForm();
   const { token } = useContext(AuthContext);
-  const [avatar, setAvatar] = useState(null)
+  const [avatar, setAvatar] = useState(null);
   const [owner, setOwner] = useState({
     name: "",
     password: "",
@@ -33,13 +35,12 @@ const Owner = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
-  const saveOwner = (event) => {
-    event.preventDefault();
+  const saveOwner = () => {
     API.saveOwner(owner, token)
       .then((resp) => {
-        saveOwnerAvatar(owner._id, token)
+        saveOwnerAvatar(owner._id, token);
       })
       .catch((error) => {
         console.log(error);
@@ -79,11 +80,11 @@ const Owner = (props) => {
 
   const fileChangeHandler = (event) => {
     setAvatar(event.target.files[0]);
-  }
+  };
 
   return (
     <div className={classes.Owner}>
-      <form onSubmit={saveOwner}>
+      <form onSubmit={handleSubmit(saveOwner)}>
         <div className="formGroup">
           <label htmlFor="name">Name</label>
           <input
@@ -91,7 +92,10 @@ const Owner = (props) => {
             name="name"
             value={owner.name}
             onChange={changeNameHandler}
+            ref={register({ required: true })}
+            className={errors.name && "inputError"}
           />
+          {errors.name && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <label htmlFor="password">Password</label>
@@ -99,37 +103,47 @@ const Owner = (props) => {
             type="password"
             name="password"
             onChange={changePasswordHandler}
+            ref={register({ minLength: 6 })}
+            className={errors.password && "inputError"}
           />
+          {errors.password && <span className="error">Password too short</span>}
         </div>
         <div className="formGroup">
           <label htmlFor="email">Email</label>
           <input
-            type="text"
-            name="name"
+            type="email"
+            name="email"
             value={owner.email}
             onChange={changeEmailHandler}
+            ref={register({ required: true })}
+            className={errors.email && "inputError"}
           />
+          {errors.email && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <label htmlFor="bio">Bio</label>
-            <Editor
-              value={owner.bio}
-              init={{
-                menubar: false
-              }}
-              onEditorChange={changeBioHandler}
-            />
+          <Editor
+            name="bio"
+            value={owner.bio}
+            init={{
+              menubar: false,
+            }}
+            onEditorChange={changeBioHandler}
+            ref={register({ required: true })}
+            className={errors.bio && "inputError"}
+          />
+          {errors.bio && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <input
-              type="file"
-              id="avatar"
-              name="avatar"
-              accept="image/png, image/jpeg"
-              onChange={fileChangeHandler}
-            ></input>
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg"
+            onChange={fileChangeHandler}
+          ></input>
         </div>
-        <button className="btn">Save</button>
+        <input type="submit" className="btn" value="Save"/>
       </form>
     </div>
   );

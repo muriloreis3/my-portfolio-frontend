@@ -73,9 +73,9 @@ export default function Contact(props) {
             onChange={emailChangedHandler}
             placeholder="example@mail.com"
             ref={register({ required: true })}
-            className={errors.name && "inputError"}
+            className={errors.email && "inputError"}
           />
-          {errors.name && <span className="error">This field is required</span>}
+          {errors.email && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <label>Subject</label>
@@ -87,9 +87,9 @@ export default function Contact(props) {
             onChange={subjectChangedHandler}
             placeholder="What do you want to talk about?"
             ref={register({ required: true })}
-            className={errors.name && "inputError"}
+            className={errors.subject && "inputError"}
           />
-          {errors.name && <span className="error">This field is required</span>}
+          {errors.subject && <span className="error">This field is required</span>}
         </div>
         <div className="formGroup">
           <label>Message</label>
@@ -99,9 +99,9 @@ export default function Contact(props) {
             value={content}
             onChange={contentChangedHandler}
             ref={register({ required: true })}
-            className={errors.name && "inputError"}
+            className={errors.content && "inputError"}
           ></textarea>
-          {errors.name && <span className="error">This field is required</span>}
+          {errors.content && <span className="error">This field is required</span>}
         </div>
         <input className="btn" type="submit" value="Send" />
       </form>
