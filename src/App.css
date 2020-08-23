@@ -15,6 +15,14 @@ main {
   height: 100%;
 }
 
+.w_100 {
+  width: 100%;
+}
+
+.m-bottom_10 {
+  margin-bottom: 10px;
+}
+
 .ProjectTitle {
   display: flex;
   align-items: center;
@@ -126,4 +134,10 @@ main {
 
 .inputError {
   border: 1px solid red !important;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }

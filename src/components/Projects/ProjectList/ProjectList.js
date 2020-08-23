@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import renderHTML from 'react-render-html';
+import renderHTML from "react-render-html";
 
 import Card from "../../UI/Card/card";
+import Tags from "../../UI/Tags/Tags";
 import ProjectIcons from "../ProjectIcons/ProjectIcons";
 
 const ProjectList = (props) => {
@@ -15,23 +16,28 @@ const ProjectList = (props) => {
             image={project.image ? project.image.toString() : null}
           >
             <div className="ProjectTitle">
-              <h1>{project.title}</h1>
-              <ProjectIcons
-                repositoryLink={project.repositoryLink}
-                demonstrationLink={project.demonstrationLink}
-              />
-              {props.admin ? (
-                <div className="delete">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      props.onDeleteProject(project._id);
-                    }}
-                  >
-                    <i className="fas fa-trash"></i>
-                  </button>
+              <div className="w_100 m-bottom_10">
+                <div className="group">
+                  <h1>{project.title}</h1>
+                  <ProjectIcons
+                    repositoryLink={project.repositoryLink}
+                    demonstrationLink={project.demonstrationLink}
+                  />
+                  {props.admin && (
+                    <div className="delete">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          props.onDeleteProject(project._id);
+                        }}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  )}
                 </div>
-              ) : null}
+                {project.keywords && <Tags content={project.keywords} />}
+              </div>
             </div>
             {renderHTML(project.description)}
           </Card>

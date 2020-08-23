@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import renderHTML from 'react-render-html';
+import renderHTML from "react-render-html";
 
 import Card from "../UI/Card/card";
+import Tags from "../UI/Tags/Tags";
 
 const ArticleList = (props) => {
   return (
@@ -14,19 +15,24 @@ const ArticleList = (props) => {
             image={article.image ? article.image.toString() : null}
           >
             <div className="ProjectTitle">
-              <h1>{article.title}</h1>
-              {props.admin ? (
-                <div className="delete">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      props.onDeleteArticle(article._id);
-                    }}
-                  >
-                    <i className="fas fa-trash"></i>
-                  </button>
+              <div className="w_100 m-bottom_10">
+                <div className="group">
+                  <h1>{article.title}</h1>
+                  {props.admin && (
+                    <div className="delete">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          props.onDeleteArticle(article._id);
+                        }}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  )}
                 </div>
-              ) : null}
+                {article.keywords && <Tags content={article.keywords} />}
+              </div>
             </div>
             {renderHTML(article.content)}
           </Card>
