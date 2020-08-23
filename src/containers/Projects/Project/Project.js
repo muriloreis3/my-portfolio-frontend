@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import renderHTML from "react-render-html";
 
 import Modal from "../../../components/UI/Modal/modal";
 import Spinner from "../../../components/UI/Spinner/spinner";
@@ -8,7 +9,9 @@ import ProjectIcons from "../../../components/Projects/ProjectIcons/ProjectIcons
 export default function Project(props) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [project, setProject] = useState({});
+  const [project, setProject] = useState({
+    description: "",
+  });
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,15 +31,20 @@ export default function Project(props) {
 
   if (!isLoading) {
     content = (
-      <div>
-        <div className="ProjectTitle">
-          <h2>{project.title}</h2>
-          <ProjectIcons
-            repositoryLink={props.repositoryLink}
-            demonstrationLink={props.demonstrationLink}
-          />
+      <div className="fx fx-col h_100">
+        <div className="Image">
+          <img src={`data:image/jpeg;base64,${project.image}`} alt="" />
         </div>
-        <div>{project.description}</div>
+        <div className="Content">
+          <div className="ProjectTitle">
+            <h2>{project.title}</h2>
+            <ProjectIcons
+              repositoryLink={props.repositoryLink}
+              demonstrationLink={props.demonstrationLink}
+            />
+          </div>
+          <div>{renderHTML(project.description)}</div>
+        </div>
       </div>
     );
   }

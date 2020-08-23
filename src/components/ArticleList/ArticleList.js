@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import renderHTML from 'react-render-html';
 
 import Card from "../UI/Card/card";
 
@@ -27,8 +28,7 @@ const ArticleList = (props) => {
                 </div>
               ) : null}
             </div>
-
-            <p>{article.content}</p>
+            {renderHTML(article.content)}
           </Card>
         );
       })}

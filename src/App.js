@@ -11,14 +11,16 @@ function App() {
   const authContext = useContext(AuthContext);
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      API.verify(token)
-        .then(resp => {
-          authContext.setToken(token);
-        }).catch(error => {
-          localStorage.removeItem('token');
-          authContext.setToken(null);
-        })
+    if(authContext.token === null) {
+      if (token) {
+        API.verify(token)
+          .then(resp => {
+            authContext.setToken(token);
+          }).catch(error => {
+            localStorage.removeItem('token');
+            authContext.setToken(null);
+          })
+      }
     }
   }, [authContext]);
 

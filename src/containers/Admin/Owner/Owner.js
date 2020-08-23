@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Editor } from '@tinymce/tinymce-react';
 
 import * as API from "../../../api/api";
 import classes from "./Owner.module.css";
@@ -45,15 +46,14 @@ const Owner = (props) => {
       });
   };
 
-  const onChangeBioHandler = (event) => {
-    const value = event.target.value;
+  const changeBioHandler = (content, editor) => {
     setOwner((prevOwner) => ({
       ...prevOwner,
-      bio: value,
+      bio: content,
     }));
   };
 
-  const onChangeEmailHandler = (event) => {
+  const changeEmailHandler = (event) => {
     const value = event.target.value;
     setOwner((prevOwner) => ({
       ...prevOwner,
@@ -61,7 +61,7 @@ const Owner = (props) => {
     }));
   };
 
-  const onChangeNameHandler = (event) => {
+  const changeNameHandler = (event) => {
     const value = event.target.value;
     setOwner((prevOwner) => ({
       ...prevOwner,
@@ -69,7 +69,7 @@ const Owner = (props) => {
     }));
   };
 
-  const onChangePasswordHandler = (event) => {
+  const changePasswordHandler = (event) => {
     const value = event.target.value;
     setOwner((prevOwner) => ({
       ...prevOwner,
@@ -90,7 +90,7 @@ const Owner = (props) => {
             type="text"
             name="name"
             value={owner.name}
-            onChange={onChangeNameHandler}
+            onChange={changeNameHandler}
           />
         </div>
         <div className="formGroup">
@@ -98,7 +98,7 @@ const Owner = (props) => {
           <input
             type="password"
             name="password"
-            onChange={onChangePasswordHandler}
+            onChange={changePasswordHandler}
           />
         </div>
         <div className="formGroup">
@@ -107,27 +107,28 @@ const Owner = (props) => {
             type="text"
             name="name"
             value={owner.email}
-            onChange={onChangeEmailHandler}
+            onChange={changeEmailHandler}
           />
         </div>
         <div className="formGroup">
           <label htmlFor="bio">Bio</label>
-          <textarea
-            name="bio"
-            id=""
-            cols="30"
-            rows="10"
-            value={owner.bio}
-            onChange={onChangeBioHandler}
-          ></textarea>
+            <Editor
+              value={owner.bio}
+              init={{
+                menubar: false
+              }}
+              onEditorChange={changeBioHandler}
+            />
         </div>
-        <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-            onChange={fileChangeHandler}
-          ></input>
+        <div className="formGroup">
+          <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
+              onChange={fileChangeHandler}
+            ></input>
+        </div>
         <button className="btn">Save</button>
       </form>
     </div>

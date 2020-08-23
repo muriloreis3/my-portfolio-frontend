@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import renderHTML from "react-render-html";
 
 import Modal from "../../../components/UI/Modal/modal";
 import Spinner from "../../../components/UI/Spinner/spinner";
@@ -7,7 +8,9 @@ import * as API from "../../../api/api";
 export default function Article(props) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [article, setArticle] = useState({});
+  const [article, setArticle] = useState({
+    content: "",
+  });
   useEffect(() => {
     setIsLoading(true);
     API.getArticle(props.match.params.id)
@@ -26,9 +29,14 @@ export default function Article(props) {
 
   if (!isLoading) {
     content = (
-      <div>
-        <h2>{article.title}</h2>
-        <div>{article.content}</div>
+      <div className="fx fx-col h_100">
+        <div className="Image">
+          <img src={`data:image/jpeg;base64,${article.image}`} alt="" />
+        </div>
+        <div className="Content">
+          <h2>{article.title}</h2>
+          <div>{renderHTML(article.content)}</div>
+        </div>
       </div>
     );
   }

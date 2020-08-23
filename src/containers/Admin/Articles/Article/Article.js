@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Editor } from '@tinymce/tinymce-react';
 
 import Modal from "../../../../components/UI/Modal/modal";
 import Spinner from "../../../../components/UI/Spinner/spinner";
@@ -85,11 +86,10 @@ export default function Article(props) {
     }));
   };
 
-  const contentChangedHandler = (event) => {
-    const value = event.target.value;
+  const contentChangedHandler = (content, editor) => {
     setArticle((prevArticle) => ({
       ...prevArticle,
-      content: value,
+      content: content,
     }));
   };
 
@@ -97,9 +97,9 @@ export default function Article(props) {
     setArticleImage(event.target.files[0]);
   };
 
-  let content = <Spinner />
+  let content = <Spinner />;
 
-  if(!isLoading) {
+  if (!isLoading) {
     content = (
       <div className={classes.Article}>
         <form onSubmit={saveArticle}>
@@ -123,14 +123,15 @@ export default function Article(props) {
           </div>
           <div className="formGroup">
             <label htmlFor="">Content</label>
-            <textarea
-              name="content"
-              id=""
-              cols="30"
-              rows="10"
+            <Editor
               value={article.content}
-              onChange={contentChangedHandler}
-            ></textarea>
+              init={{
+                menubar: false
+              }}
+              onEditorChange={contentChangedHandler}
+            />
+          </div>
+          <div className="formGroup">
             <input
               type="file"
               id="avatar"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Editor } from '@tinymce/tinymce-react';
 
 import Modal from "../../../../components/UI/Modal/modal";
 import Spinner from "../../../../components/UI/Spinner/spinner";
@@ -88,11 +89,10 @@ export default function Project(props) {
     }));
   };
 
-  const descriptionChangedHandler = (event) => {
-    const value = event.target.value;
+  const descriptionChangedHandler = (content, editor) => {
     setProject((prevProject) => ({
       ...prevProject,
-      description: value,
+      description: content,
     }));
   };
 
@@ -160,14 +160,15 @@ export default function Project(props) {
           </div>
           <div className="formGroup">
             <label htmlFor="">Description</label>
-            <textarea
-              name="content"
-              id=""
-              cols="30"
-              rows="10"
+            <Editor
               value={project.description}
-              onChange={descriptionChangedHandler}
-            ></textarea>
+              init={{
+                menubar: false
+              }}
+              onEditorChange={descriptionChangedHandler}
+            />
+          </div>
+          <div className="formGroup">
             <input
               type="file"
               id="avatar"

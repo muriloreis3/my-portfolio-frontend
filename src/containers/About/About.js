@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import renderHTML from "react-render-html";
 
 import * as API from "../../api/api";
 import Modal from "../../components/UI/Modal/modal";
@@ -6,7 +7,9 @@ import Spinner from "../../components/UI/Spinner/spinner";
 import classes from "./About.module.css";
 
 export default function About(props) {
-  const [owner, setOwner] = useState({});
+  const [owner, setOwner] = useState({
+    bio:""
+  });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,7 +36,7 @@ export default function About(props) {
         </div>
         <div className={classes.text}>
           <h2>Hello my name is {owner.name}</h2>
-          <p>{owner.bio}</p>
+          <p>{renderHTML(owner.bio)}</p>
         </div>
       </div>
     );

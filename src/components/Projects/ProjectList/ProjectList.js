@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import renderHTML from 'react-render-html';
 
 import Card from "../../UI/Card/card";
 import ProjectIcons from "../ProjectIcons/ProjectIcons";
@@ -32,7 +33,7 @@ const ProjectList = (props) => {
                 </div>
               ) : null}
             </div>
-            <p>{project.description}</p>
+            {renderHTML(project.description)}
           </Card>
         );
       })}
