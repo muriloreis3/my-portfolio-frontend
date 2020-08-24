@@ -3,7 +3,7 @@ import Axios from "axios";
 export const getProject = async (id) => {
   try {
     const project = await Axios.get(
-      "http://localhost:5000/api/projects/" + id,
+      "/api/projects/" + id,
       {
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -18,7 +18,7 @@ export const getProject = async (id) => {
 
 export const getProjects = async () => {
   try {
-    const projects = await Axios.get("http://localhost:5000/api/projects/", {
+    const projects = await Axios.get("/api/projects/", {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -39,7 +39,7 @@ export const editProject = async (project, token) => {
   };
   try {
     const resp = await Axios.patch(
-      "http://localhost:5000/api/projects/" + project._id,
+      "/api/projects/" + project._id,
       objProject,
       {
         headers: {
@@ -64,7 +64,7 @@ export const createProject = async (project, token) => {
   };
   try {
     const project = await Axios.post(
-      "http://localhost:5000/api/projects/",
+      "/api/projects/",
       objProject,
       {
         headers: {
@@ -82,7 +82,7 @@ export const createProject = async (project, token) => {
 export const saveProjectImage = async (formData, id, token) => {
   try {
     await Axios.post(
-      "http://localhost:5000/api/projects/image/" + id,
+      "/api/projects/image/" + id,
       formData,
       {
         headers: {
@@ -99,7 +99,7 @@ export const saveProjectImage = async (formData, id, token) => {
 export const deleteProject = async (id, token) => {
   try {
     const project = await Axios.delete(
-      "http://localhost:5000/api/projects/" + id,
+      "/api/projects/" + id,
       {
         headers: {
           "Access-Control-Allow-Origin": "*",

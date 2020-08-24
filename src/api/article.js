@@ -3,7 +3,7 @@ import Axios from "axios";
 export const getArticle = async (id) => {
   try {
     const article = await Axios.get(
-      "http://localhost:5000/api/articles/" + id,
+      "/api/articles/" + id,
       {
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -18,7 +18,7 @@ export const getArticle = async (id) => {
 
 export const getArticles = async () => {
   try {
-    const articles = await Axios.get("http://localhost:5000/api/articles/", {
+    const articles = await Axios.get("/api/articles/", {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -37,7 +37,7 @@ export const editArticle = async (article, token) => {
   };
   try {
     const resp = await Axios.patch(
-      "http://localhost:5000/api/articles/" + article._id,
+      "/api/articles/" + article._id,
       objArticle,
       {
         headers: {
@@ -60,7 +60,7 @@ export const createArticle = async (article, token) => {
   };
   try {
     const article = await Axios.post(
-      "http://localhost:5000/api/articles/",
+      "/api/articles/",
       objArticle,
       {
         headers: {
@@ -78,7 +78,7 @@ export const createArticle = async (article, token) => {
 export const saveArticleImage = async (formData, id, token) => {
   try {
     await Axios.post(
-      "http://localhost:5000/api/articles/image/" + id,
+      "/api/articles/image/" + id,
       formData,
       {
         headers: {
@@ -95,7 +95,7 @@ export const saveArticleImage = async (formData, id, token) => {
 export const deleteArticle = async (id, token) => {
   try {
     const article = await Axios.delete(
-      "http://localhost:5000/api/articles/" + id,
+      "/api/articles/" + id,
       {
         headers: {
           "Access-Control-Allow-Origin": "*",

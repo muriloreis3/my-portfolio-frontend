@@ -2,7 +2,7 @@ import Axios from "axios";
 
 export const getOwner = async () => {
   try {
-    const owner = await Axios.get("http://localhost:5000/api/owner/", {
+    const owner = await Axios.get("/api/owner/", {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -31,7 +31,7 @@ export const saveOwner = async (owner, token) => {
   }
 
   try {
-    await Axios.patch("http://localhost:5000/api/owner/", objOwner, {
+    await Axios.patch("/api/owner/", objOwner, {
       headers: {
         "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ export const saveOwner = async (owner, token) => {
 export const login = async (password) => {
   try {
     const owner = await Axios.post(
-      "http://localhost:5000/api/login/",
+      "/api/login/",
       {},
       {
         headers: {
@@ -66,7 +66,7 @@ export const login = async (password) => {
 
 export const verify = async (token) => {
   try {
-    const resp = await Axios.post("http://localhost:5000/api/verify/", null, {
+    const resp = await Axios.post("/api/verify/", null, {
       headers: {
         "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${token}`,
@@ -81,7 +81,7 @@ export const verify = async (token) => {
 export const saveOwnerAvatar = async (formData, id, token) => {
   try {
     await Axios.post(
-      "http://localhost:5000/api/owner/avatar",
+      "/api/owner/avatar",
       formData,
       {
         headers: {
@@ -97,7 +97,7 @@ export const saveOwnerAvatar = async (formData, id, token) => {
 
 export const contactOwner = async (sendData) => {
   try {
-    await Axios.post("http://localhost:5000/api/owner/contactme", sendData, {
+    await Axios.post("/api/owner/contactme", sendData, {
       headers: {
         "Access-Control-Allow-Origin": "*",
       }
