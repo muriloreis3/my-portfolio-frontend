@@ -146,12 +146,7 @@ const Owner = (props) => {
                 menubar: false,
               }}
               onEditorChange={changeBioHandler}
-              ref={register({ required: true })}
-              className={errors.bio && "inputError"}
             />
-            {errors.bio && (
-              <span className="error">This field is required</span>
-            )}
           </div>
           <div className="formGroup">
             <input

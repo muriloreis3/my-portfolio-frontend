@@ -184,12 +184,7 @@ export default function Project(props) {
                 menubar: false,
               }}
               onEditorChange={descriptionChangedHandler}
-              ref={register({ required: true })}
-              className={errors.description && "inputError"}
             />
-            {errors.description && (
-              <span className="error">This field is required</span>
-            )}
           </div>
           <div className="formGroup">
             <input

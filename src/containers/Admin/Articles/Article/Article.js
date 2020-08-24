@@ -141,13 +141,8 @@ export default function Article(props) {
               init={{
                 menubar: false,
               }}
-              ref={register({ required: true })}
-              className={errors.content && "inputError"}
               onEditorChange={contentChangedHandler}
             />
-            {errors.content && (
-              <span className="error">This field is required</span>
-            )}
           </div>
           <div className="formGroup">
             <input
