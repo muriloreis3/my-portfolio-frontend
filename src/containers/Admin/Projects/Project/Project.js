@@ -195,7 +195,7 @@ export default function Project(props) {
               onChange={fileChangeHandler}
             ></input>
           </div>
-          <button className="btn">Save</button>
+          <input type="submit" className="btn" value="Save"/>
         </form>
       </div>
     );
