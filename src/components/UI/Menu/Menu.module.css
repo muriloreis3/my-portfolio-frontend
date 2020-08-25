@@ -1,0 +1,28 @@
+.Menu {
+    display: flex;
+    align-items: center;
+}
+
+.Logo {
+    margin: 0 10px;
+}
+
+.sideMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+    .Menu {
+        display: none;
+    }
+
+    .sideMenu ul {
+        flex-direction: column;
+    }
+
+    .sideMenu li {
+        margin: 10px
+    }
+}

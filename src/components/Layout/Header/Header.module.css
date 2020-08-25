@@ -3,8 +3,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    display: flex;
-    align-items: center;
     padding: 10px;
     background: #22455b;
     z-index: 2;
@@ -31,6 +29,8 @@
     opacity: 0.8;
 }
 
-.Logo {
-    margin: 0 10px;
+@media (max-width: 500px) {
+    .Header li {
+        margin: 10px;
+    }
 }

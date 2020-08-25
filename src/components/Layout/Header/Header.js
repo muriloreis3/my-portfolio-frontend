@@ -1,24 +1,18 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
 
-import Logo from '../Logo/Logo';
-import classes from './Header.module.css';
+import Menu from "../../UI/Menu/Menu";
+import HamburgerButton from "../../UI/HamburgerButton/HamburgerButton";
+import classes from "./Header.module.css";
 
 export default function Header(props) {
-    const elClasses = [classes.Header, 'bg-heading'];
-    return (
-        <header className={elClasses.join(' ')}>
-            <div className={classes.Logo}>
-                <NavLink to="/" exact ><Logo width="50px" height="50px"/></NavLink>
-            </div>
-            <nav>
-                <ul>
-                    <li><NavLink to="/" exact activeClassName={classes.active}>Home</NavLink></li>
-                    <li><NavLink to="/articles" activeClassName={classes.active}>Articles</NavLink></li>
-                    <li><NavLink to="/projects" activeClassName={classes.active}>Projects</NavLink></li>
-                    <li><NavLink to="/contact" activeClassName={classes.active}>Contact</NavLink></li>
-                </ul>
-            </nav>
-        </header>
-    )
+  const [showMenu, setShowMenu] = useState(false);
+  const elClasses = [classes.Header, "bg-heading"];
+
+  return (
+    <header className={elClasses.join(" ")}>
+      <Menu />
+      <HamburgerButton clicked={() => setShowMenu(!showMenu)} />
+      {showMenu && <Menu side />}
+    </header>
+  );
 }

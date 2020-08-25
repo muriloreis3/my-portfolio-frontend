@@ -141,3 +141,11 @@ main {
   align-items: center;
   width: 100%;
 }
+
+.none {
+  display: none !important;
+}
+
+.show {
+  display: block;
+}
