@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import { useForm } from "react-hook-form";
 
 import Modal from "../../../../components/UI/Modal/modal";
@@ -7,6 +6,7 @@ import Spinner from "../../../../components/UI/Spinner/spinner";
 import * as API from "../../../../api/api";
 import classes from "./Article.module.css";
 import { AuthContext } from "../../../../context/AuthContext";
+import HtmlEditor from "../../../../components/UI/HtmlEditor/HtmlEditor";
 
 export default function Article(props) {
   const { register, handleSubmit, errors } = useForm();
@@ -135,12 +135,9 @@ export default function Article(props) {
           </div>
           <div className="formGroup">
             <label htmlFor="">Content</label>
-            <Editor
+            <HtmlEditor
               name="content"
               value={article.content}
-              init={{
-                menubar: false,
-              }}
               onEditorChange={contentChangedHandler}
             />
           </div>

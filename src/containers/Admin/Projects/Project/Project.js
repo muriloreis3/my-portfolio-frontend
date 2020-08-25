@@ -7,6 +7,7 @@ import Spinner from "../../../../components/UI/Spinner/spinner";
 import classes from "./Project.module.css";
 import * as API from "../../../../api/api";
 import { AuthContext } from "../../../../context/AuthContext";
+import HtmlEditor from "../../../../components/UI/HtmlEditor/HtmlEditor";
 
 export default function Project(props) {
   const { register, handleSubmit, errors } = useForm();
@@ -177,12 +178,9 @@ export default function Project(props) {
           </div>
           <div className="formGroup">
             <label htmlFor="">Description</label>
-            <Editor
+            <HtmlEditor
               name="description"
               value={project.description}
-              init={{
-                menubar: false,
-              }}
               onEditorChange={descriptionChangedHandler}
             />
           </div>

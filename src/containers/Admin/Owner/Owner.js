@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import { useForm } from "react-hook-form";
 
 import * as API from "../../../api/api";
@@ -7,6 +6,7 @@ import Modal from "../../../components/UI/Modal/modal";
 import Spinner from "../../../components/UI/Spinner/spinner";
 import classes from "./Owner.module.css";
 import { AuthContext } from "../../../context/AuthContext";
+import HtmlEditor from "../../../components/UI/HtmlEditor/HtmlEditor"
 
 const Owner = (props) => {
   const { register, handleSubmit, errors } = useForm();
@@ -139,12 +139,9 @@ const Owner = (props) => {
           </div>
           <div className="formGroup">
             <label htmlFor="bio">Bio</label>
-            <Editor
+            <HtmlEditor
               name="bio"
               value={owner.bio}
-              init={{
-                menubar: false,
-              }}
               onEditorChange={changeBioHandler}
             />
           </div>
