@@ -27,3 +27,8 @@
     margin: 0 20px;
 }
 
+.Box {
+    padding: 10px;
+    background: #fff;
+    max-width: 700px;
+}

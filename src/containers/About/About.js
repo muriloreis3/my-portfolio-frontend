@@ -8,7 +8,7 @@ import classes from "./About.module.css";
 
 export default function About(props) {
   const [owner, setOwner] = useState({
-    bio:""
+    bio: "",
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +36,7 @@ export default function About(props) {
         </div>
         <div className={classes.text}>
           <h2>Hello my name is {owner.name}</h2>
-          <p>{renderHTML(owner.bio)}</p>
+          <div className={classes.Box}>{renderHTML(owner.bio)}</div>
         </div>
       </div>
     );
