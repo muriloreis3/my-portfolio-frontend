@@ -17,4 +17,12 @@
     .Menu {
         display: none;
     }
+
+    .sideMenu ul {
+        flex-direction: column;
+    }
+
+    .sideMenu li {
+        margin: 10px
+    }
 }
