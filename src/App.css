@@ -64,7 +64,7 @@ main {
 
 .cardWrapper {
   width: 80%;
-  margin: auto;
+  margin: 10px auto;
 }
 
 .btn {
@@ -122,6 +122,11 @@ main {
   margin-top: -50px;
   margin-bottom: 8px;
   padding: 20px;
+}
+
+.Content h2 {
+  font-size: 3rem;
+  margin-bottom: 25px;
 }
 
 .Content i {
