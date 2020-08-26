@@ -159,5 +159,6 @@ main {
 
 .displayFooter {
   text-align: right;
-  margin-top: auto;
+  margin-top: 20px;
+  font-size: small;
 }
