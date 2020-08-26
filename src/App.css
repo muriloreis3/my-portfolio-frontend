@@ -162,3 +162,9 @@ main {
   margin-top: 20px;
   font-size: small;
 }
+
+input[type="submit"]:disabled,
+input[type="submit"]:disabled:hover {
+  cursor: default;
+  opacity: 0.5;
+}

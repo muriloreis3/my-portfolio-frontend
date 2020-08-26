@@ -12,6 +12,7 @@ export default function Article(props) {
   const { register, handleSubmit, errors } = useForm();
 
   const [isLoading, setIsLoading] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
   const [articleImage, setArticleImage] = useState(null);
   const [article, setArticle] = useState({
@@ -42,9 +43,11 @@ export default function Article(props) {
       formData.append("image", articleImage);
       API.saveArticleImage(formData, id, token)
         .then((resp) => {
+          setIsSaving(false);
           props.history.push("/admin/articles");
         })
         .catch((error) => {
+          setIsSaving(false);
           setError(error.message);
         });
     } else {
@@ -53,13 +56,15 @@ export default function Article(props) {
   };
 
   const saveArticle = () => {
+    setIsSaving(true);
     if (article._id) {
       API.editArticle(article, token)
         .then((resp) => {
           saveArticleImage(resp._id, token);
         })
         .catch((error) => {
-          console.log(error.message);
+          setError(error.message);
+          setIsSaving(false);
         });
     } else {
       API.createArticle(article, token)
@@ -67,7 +72,8 @@ export default function Article(props) {
           saveArticleImage(resp._id, token);
         })
         .catch((error) => {
-          console.log(error.message);
+          setError(error.message);
+          setIsSaving(false);
         });
     }
   };
@@ -150,7 +156,8 @@ export default function Article(props) {
               onChange={fileChangeHandler}
             ></input>
           </div>
-          <input type="submit" className="btn" value="Save"/>
+          <input disabled={isSaving} type="submit" className="btn" value="Save"/>
+          {isSaving && <Spinner />}
         </form>
       </div>
     );

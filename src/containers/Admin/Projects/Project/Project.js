@@ -12,8 +12,10 @@ import HtmlEditor from "../../../../components/UI/HtmlEditor/HtmlEditor";
 export default function Project(props) {
   const { register, handleSubmit, errors } = useForm();
   const { token } = useContext(AuthContext);
+
   const [projectImage, setProjectImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
   const [project, setProject] = useState({
     title: "",
@@ -45,9 +47,11 @@ export default function Project(props) {
       formData.append("image", projectImage);
       API.saveProjectImage(formData, id, token)
         .then((resp) => {
+          setIsSaving(false);
           props.history.push("/admin/projects");
         })
         .catch((error) => {
+          setIsSaving(false);
           setError(error.message);
         });
     } else {
@@ -56,13 +60,15 @@ export default function Project(props) {
   };
 
   const saveProject = () => {
+    setIsSaving(true);
     if (project._id) {
       API.editProject(project, token)
         .then((resp) => {
           saveProjectImage(resp._id, token);
         })
         .catch((error) => {
-          console.log(error.message);
+          setIsSaving(false);
+          setError(error.message);
         });
     } else {
       API.createProject(project, token)
@@ -70,7 +76,8 @@ export default function Project(props) {
           saveProjectImage(resp._id, token);
         })
         .catch((error) => {
-          console.log(error.message);
+          setIsSaving(false);
+          setError(error.message);
         });
     }
   };
@@ -193,7 +200,8 @@ export default function Project(props) {
               onChange={fileChangeHandler}
             ></input>
           </div>
-          <input type="submit" className="btn" value="Save"/>
+          <input disabled={isSaving} type="submit" className="btn" value="Save"/>
+          {isSaving && <Spinner />}
         </form>
       </div>
     );

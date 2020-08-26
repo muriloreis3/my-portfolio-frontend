@@ -50,7 +50,7 @@ export default function Project(props) {
           <div>{renderHTML(project.description)}</div>
           <div class="displayFooter">
             <em>
-              Publicado em:{" "}
+              Published em:{" "}
               {`${data.getDate()}/${
                 mes.length === 1 ? "0" + mes : mes
               }/${data.getFullYear()}`}

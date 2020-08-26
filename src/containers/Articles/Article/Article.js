@@ -27,7 +27,7 @@ export default function Article(props) {
 
   const data = new Date(article.createdAt);
   const mes = (data.getMonth() + 1).toString();
-  
+
   let content = <Spinner />;
 
   if (!isLoading) {
@@ -41,7 +41,7 @@ export default function Article(props) {
           <div>{renderHTML(article.content)}</div>
           <div class="displayFooter">
             <em>
-              Publicado em:{" "}
+              Published:{" "}
               {`${data.getDate()}/${
                 mes.length === 1 ? "0" + mes : mes
               }/${data.getFullYear()}`}

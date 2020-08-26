@@ -13,6 +13,7 @@ const Owner = (props) => {
   const { token } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [owner, setOwner] = useState({
@@ -40,19 +41,24 @@ const Owner = (props) => {
     const formData = new FormData();
     formData.append("avatar", avatar);
     API.saveOwnerAvatar(formData, id, token)
-      .then((resp) => {})
+      .then((resp) => {
+        setIsSaving(false);
+      })
       .catch((error) => {
-        console.log(error);
+        setIsSaving(false);
+        setError(error);
       });
   };
 
   const saveOwner = () => {
+    setIsSaving(true);
     API.saveOwner(owner, token)
       .then((resp) => {
         saveOwnerAvatar(owner._id, token);
       })
       .catch((error) => {
-        console.log(error);
+        setIsSaving(false);
+        setError(error);
       });
   };
 
@@ -154,7 +160,8 @@ const Owner = (props) => {
               onChange={fileChangeHandler}
             ></input>
           </div>
-          <input type="submit" className="btn" value="Save" />
+          <input disabled={isSaving} type="submit" className="btn" value="Save"/>
+          {isSaving && <Spinner />}
         </form>
       </div>
     );
