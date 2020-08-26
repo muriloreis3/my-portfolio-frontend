@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import { useForm } from "react-hook-form";
 
 import Modal from "../../../../components/UI/Modal/modal";
