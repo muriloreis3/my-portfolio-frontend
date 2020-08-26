@@ -25,6 +25,9 @@ export default function Article(props) {
       });
   }, [props.match.params.id]);
 
+  const data = new Date(article.createdAt);
+  const mes = (data.getMonth() + 1).toString();
+  
   let content = <Spinner />;
 
   if (!isLoading) {
@@ -36,6 +39,14 @@ export default function Article(props) {
         <div className="Content">
           <h2>{article.title}</h2>
           <div>{renderHTML(article.content)}</div>
+          <div class="displayFooter">
+            <em>
+              Publicado em:{" "}
+              {`${data.getDate()}/${
+                mes.length === 1 ? "0" + mes : mes
+              }/${data.getFullYear()}`}
+            </em>
+          </div>
         </div>
       </div>
     );

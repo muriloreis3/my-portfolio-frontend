@@ -27,6 +27,10 @@ export default function Project(props) {
       });
   }, [props.match.params.id]);
 
+  const data = new Date(project.createdAt);
+  const mes = (data.getMonth() + 1).toString();
+  
+
   let content = <Spinner />;
 
   if (!isLoading) {
@@ -44,6 +48,14 @@ export default function Project(props) {
             />
           </div>
           <div>{renderHTML(project.description)}</div>
+          <div class="displayFooter">
+            <em>
+              Publicado em:{" "}
+              {`${data.getDate()}/${
+                mes.length === 1 ? "0" + mes : mes
+              }/${data.getFullYear()}`}
+            </em>
+          </div>
         </div>
       </div>
     );

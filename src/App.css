@@ -122,6 +122,8 @@ main {
   margin-top: -50px;
   margin-bottom: 8px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .Content h2 {
@@ -153,4 +155,9 @@ main {
 
 .show {
   display: block;
+}
+
+.displayFooter {
+  text-align: right;
+  margin-top: auto;
 }
